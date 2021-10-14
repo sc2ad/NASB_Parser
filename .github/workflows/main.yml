@@ -29,4 +29,5 @@ jobs:
       - name: Upload built artifact
         uses: actions/upload-artifact@v2
         with:
-          name: NASB_Parser/bin/Release/netstandard2.1/NASB_Parser.dll
+          name: NASB_Parser.dll
+          path: NASB_Parser/bin/Release/netstandard2.1/NASB_Parser.dll
