@@ -29,7 +29,7 @@ namespace NASB_Parser
                     return new SAPlayAnim(reader);
 
                 case TypeId.RootAnimId:
-                    break;
+                    return new SAPlayRootAnim(reader);
 
                 case TypeId.SnapAnimWeightsId:
                     break;

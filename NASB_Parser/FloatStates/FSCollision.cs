@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace NASB_Parser.FloatStates
+{
+    public class FSCollision : FloatSource
+    {
+        public CollisionAttributes CollisionAttribute { get; set; }
+
+        public FSCollision()
+        {
+        }
+
+        internal FSCollision(BulkSerializer reader)
+        {
+            _ = reader.ReadInt();
+            _ = reader.ReadInt();
+            CollisionAttribute = (CollisionAttributes)reader.ReadInt();
+        }
+
+        public enum CollisionAttributes
+        {
+            TouchBottom,
+            TouchTop,
+            TouchLeft,
+            TouchRight,
+            ParentOrderAdded
+        }
+    }
+}
