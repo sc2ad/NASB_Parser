@@ -25,17 +25,5 @@ namespace NASB_Parser.StateActions
             Action = StateAction.Read(reader);
             Validator = new InputValidator(reader);
         }
-
-        public enum GIEV
-        {
-            None,
-            Unplugged,
-            ActionFromFrame,
-            SpecialFromFrame = 4,
-            OffenseFromFrame = 8,
-            DefenseFromFrame = 16,
-            JumpFromFrame = 32,
-            Grounded = 64
-        }
     }
 }

@@ -19,6 +19,7 @@ namespace NASB_Parser.StateActions
 
         public InputValidator()
         {
+            Validators = new List<InputValidator>();
         }
 
         public InputValidator(BulkSerializer reader)

@@ -9,6 +9,11 @@ namespace NASB_Parser
         public string CustomCall { get; set; }
         public List<TimedAction> Timeline { get; }
 
+        public AgentState()
+        {
+            Timeline = new List<TimedAction>();
+        }
+
         internal static AgentState Read(BulkSerializer reader)
         {
             int tid = reader.ReadInt();
