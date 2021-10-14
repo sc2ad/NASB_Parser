@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31320.298
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NASB_Parser", "NASB_Parser\NASB_Parser.csproj", "{23A318ED-24E1-4C3E-B00D-167B3EDC58A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSerialization", "TestSerialization\TestSerialization.csproj", "{79CA1051-52C8-4DF9-B682-25AF3AB63457}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F67E9C81-912A-47CA-BF8F-7963F8721B5A}"
+	ProjectSection(SolutionItems) = preProject
+		TestSerialization\char_apple.txt = TestSerialization\char_apple.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23A318ED-24E1-4C3E-B00D-167B3EDC58A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23A318ED-24E1-4C3E-B00D-167B3EDC58A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23A318ED-24E1-4C3E-B00D-167B3EDC58A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23A318ED-24E1-4C3E-B00D-167B3EDC58A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79CA1051-52C8-4DF9-B682-25AF3AB63457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79CA1051-52C8-4DF9-B682-25AF3AB63457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79CA1051-52C8-4DF9-B682-25AF3AB63457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79CA1051-52C8-4DF9-B682-25AF3AB63457}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E673C14E-FEC9-4D28-A016-51BA23C2D979}
+	EndGlobalSection
+EndGlobal
