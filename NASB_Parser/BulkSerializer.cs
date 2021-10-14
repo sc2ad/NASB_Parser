@@ -39,10 +39,10 @@ namespace NASB_Parser
         {
             var header = reader.ReadLine();
             if (HeaderName != header)
-                throw new InvalidOperationException($"Cannot parse serialization type: {header}!");
+                throw new ReadException(this, $"Cannot parse serialization type: {header}!");
             header = reader.ReadLine();
             if (HeaderVersion != header)
-                throw new InvalidOperationException($"Cannot parse serialization version: {header}!");
+                throw new ReadException(this, $"Cannot parse serialization version: {header}!");
             var intDataSize = int.Parse(reader.ReadLine());
             intData = new List<int>(intDataSize);
             var floatDataSize = int.Parse(reader.ReadLine());
@@ -118,6 +118,78 @@ namespace NASB_Parser
             {
                 writer.WriteLine(i);
             }
+        }
+
+        private int nextInt;
+
+        public int NextInt
+        {
+            get => nextInt;
+            set => nextInt = value < intData.Count ? value :
+                throw new IndexOutOfRangeException($"Cannot assign {nameof(NextInt)} to a value greater than the length of the int data!");
+        }
+
+        private int nextFloat;
+
+        public int NextFloat
+        {
+            get => nextFloat;
+            set => nextFloat = value < floatIdx.Count ? value :
+                throw new IndexOutOfRangeException($"Cannot assign {nameof(NextFloat)} to a value greater than the length of the float index data!");
+        }
+
+        private int nextString;
+
+        public int NextString
+        {
+            get => nextString;
+            set => nextString = value < stringIdx.Count ? value :
+                throw new IndexOutOfRangeException($"Cannot assign {nameof(NextString)} to a value greater than the length of the string index data!");
+        }
+
+        public int ReadIdStateCount()
+        {
+            Reset();
+            // Game code: GetNextInt(), return GetNextInt()
+            _ = ReadInt();
+            return ReadInt();
+        }
+
+        public int ReadInt()
+        {
+            return intData[NextInt++];
+        }
+
+        public float ReadFloat()
+        {
+            return floatData[floatIdx[NextFloat++]];
+        }
+
+        public string ReadString()
+        {
+            return stringData[stringIdx[NextString++]];
+        }
+
+        public void Reset()
+        {
+            NextInt = 0;
+            NextFloat = 0;
+            NextString = 0;
+        }
+
+        public int PeekInt()
+        {
+            return intData[NextInt];
+        }
+
+        public float PeekFloat()
+        {
+            return floatData[floatIdx[NextFloat]];
+        }
+
+        public string PeekString()
+        {
+            return stringData[stringIdx[NextString]];
         }
 
         public void AddInt(int x)
