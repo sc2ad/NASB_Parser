@@ -1,0 +1,32 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['5.0.x']
+      steps:
+        - uses: actions/checkout@v2
+        - name: Setup dotnet
+          uses: actions/setup-dotnet@v1
+          with:
+            dotnet-version: ${{ matrix.dotnet-version }}
+        - name: Install dependencies
+          run: dotnet restore
+        - name: Build
+          run: dotnet build --configuration Release --no-restore
+        - name: Run tests
+          run: dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+        - name: Upload test results
+          uses: actions/upload-artifact@v2
+          with:
+            name: dotnet-results-${{ matrix.dotnet-version }}
+            path: TestResults-${{ matrix.dotnet-version }}
+          if: ${{ always() }}
+        - name: Upload built artifact
+          uses: actions/upload-artifact@v2
+          with:
+            name: NASB_Parser/bin/Release/netstandard2.1/NASB_Parser.dll
