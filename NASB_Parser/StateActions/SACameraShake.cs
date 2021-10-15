@@ -13,12 +13,10 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SACameraShake(BulkSerializer reader)
+        internal SACameraShake(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            bool hasIntensity = reader.ReadInt() != 0;
             Shake = reader.ReadFloat();
-            if (hasIntensity)
+            if (Version != 0)
             {
                 Intensity = reader.ReadFloat();
             }

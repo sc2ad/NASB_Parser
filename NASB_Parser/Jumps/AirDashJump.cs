@@ -21,17 +21,15 @@ namespace NASB_Parser.Jumps
         {
         }
 
-        internal AirDashJump(BulkSerializer reader)
+        internal AirDashJump(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            bool hasSpeedDown = reader.ReadBool();
             EaseSpeed = (Ease)reader.ReadInt();
             XDir = FloatSource.Read(reader);
             YDir = FloatSource.Read(reader);
             SpeedStart = FloatSource.Read(reader);
             SpeedEnd = FloatSource.Read(reader);
             SpeedUpMult = FloatSource.Read(reader);
-            if (hasSpeedDown)
+            if (Version > 0)
             {
                 SpeedDownMult = FloatSource.Read(reader);
             }

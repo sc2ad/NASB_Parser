@@ -24,10 +24,8 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAConfigHitbox(BulkSerializer reader)
+        internal SAConfigHitbox(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            bool hasSecondTrackData = reader.ReadInt() != 0;
             Hitbox = reader.ReadInt();
             ForceZ0 = reader.ReadBool();
             Radius = reader.ReadFloat();
@@ -37,7 +35,7 @@ namespace NASB_Parser.StateActions
             Bone = reader.ReadString();
             FxId = reader.ReadString();
             SfxId = reader.ReadString();
-            if (hasSecondTrackData)
+            if (Version != 0)
             {
                 SecondTrack = reader.ReadBool();
                 if (SecondTrack)

@@ -7,14 +7,17 @@ namespace NASB_Parser.FloatSources
 {
     public abstract class FloatSource
     {
+        public TypeId Id { get; }
+        public int Version { get; }
+
         public FloatSource()
         {
         }
 
         internal FloatSource(BulkSerializer reader)
         {
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
+            Id = (TypeId)reader.ReadInt();
+            Version = reader.ReadInt();
         }
 
         public static FloatSource Read(BulkSerializer reader)

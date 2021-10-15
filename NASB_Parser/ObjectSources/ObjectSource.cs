@@ -6,14 +6,17 @@ namespace NASB_Parser.ObjectSources
 {
     public class ObjectSource
     {
+        public TypeId Id { get; }
+        public int Version { get; }
+
         public ObjectSource()
         {
         }
 
         internal ObjectSource(BulkSerializer reader)
         {
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
+            Id = (TypeId)reader.ReadInt();
+            Version = reader.ReadInt();
         }
 
         public static ObjectSource Read(BulkSerializer reader)

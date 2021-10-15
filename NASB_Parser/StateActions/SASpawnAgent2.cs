@@ -37,10 +37,8 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SASpawnAgent2(BulkSerializer reader)
+        internal SASpawnAgent2(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            int version = reader.ReadInt();
             Bank = reader.ReadString();
             Id = reader.ReadString();
             Bone = reader.ReadString();
@@ -65,10 +63,10 @@ namespace NASB_Parser.StateActions
             Direction = FloatSource.Read(reader);
             RedirectX = FloatSource.Read(reader);
             RedirectY = FloatSource.Read(reader);
-            if (version > 0)
+            if (Version > 0)
             {
                 ExactSpawn = reader.ReadBool();
-                if (version > 1)
+                if (Version > 1)
                 {
                     AddedSpawns = reader.ReadList(r => new AddedSpawnData(r));
                 }

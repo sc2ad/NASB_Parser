@@ -21,10 +21,8 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SASpawnAgent(BulkSerializer reader)
+        internal SASpawnAgent(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            bool hasResult = reader.ReadBool();
             Bank = reader.ReadString();
             Id = reader.ReadString();
             Bone = reader.ReadString();
@@ -33,7 +31,7 @@ namespace NASB_Parser.StateActions
             MessageObject = new SAGUAMessageObject(reader);
             CustomSpawnMovement = reader.ReadBool();
             Movements = reader.ReadList(r => new SpawnMovement(r));
-            if (hasResult)
+            if (Version > 0)
             {
                 ResultOrderAdded = FloatSource.Read(reader);
             }

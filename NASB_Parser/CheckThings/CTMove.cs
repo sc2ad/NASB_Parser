@@ -4,17 +4,17 @@ using System.Text;
 
 namespace NASB_Parser.CheckThings
 {
-    public class CTMoveId : CheckThing
+    public class CTMove : CheckThing
     {
         public string MovesetId { get; set; }
         public bool Previous { get; set; }
         public List<string> Extras { get; } = new List<string>();
 
-        public CTMoveId()
+        public CTMove()
         {
         }
 
-        internal CTMoveId(BulkSerializer reader)
+        internal CTMove(BulkSerializer reader) : base(reader)
         {
             MovesetId = reader.ReadString();
             Previous = reader.ReadBool();

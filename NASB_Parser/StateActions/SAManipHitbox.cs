@@ -7,28 +7,15 @@ namespace NASB_Parser.StateActions
 {
     public class SAManipHitbox : StateAction
     {
-        public List<HBM> Manips { get; }
+        public List<HBM> Manips { get; } = new List<HBM>();
 
         public SAManipHitbox()
         {
-            Manips = new List<HBM>();
         }
 
         internal SAManipHitbox(BulkSerializer reader) : base(reader)
         {
-            int len = reader.ReadInt();
-            if (len > 0)
-            {
-                Manips = new List<HBM>(len);
-                for (int i = 0; i < len; i++)
-                {
-                    Manips.Add(new HBM(reader));
-                }
-            }
-            else
-            {
-                Manips = new List<HBM>();
-            }
+            Manips = reader.ReadList(r => new HBM(r));
         }
 
         public enum Manip

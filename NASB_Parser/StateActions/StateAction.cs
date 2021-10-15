@@ -7,6 +7,9 @@ namespace NASB_Parser.StateActions
 {
     public class StateAction
     {
+        public TypeId Id { get; }
+        public int Version { get; }
+
         public StateAction()
         {
         }
@@ -14,8 +17,8 @@ namespace NASB_Parser.StateActions
         internal StateAction(BulkSerializer reader)
         {
             // Reads past two ints
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
+            Id = (TypeId)reader.ReadInt();
+            Version = reader.ReadInt();
         }
 
         public static StateAction Read(BulkSerializer reader)

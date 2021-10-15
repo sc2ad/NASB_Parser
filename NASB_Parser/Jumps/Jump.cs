@@ -6,14 +6,17 @@ namespace NASB_Parser.Jumps
 {
     public class Jump
     {
+        public TypeId Id { get; }
+        public int Version { get; }
+
         public Jump()
         {
         }
 
         internal Jump(BulkSerializer reader)
         {
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
+            Id = (TypeId)reader.ReadInt();
+            Version = reader.ReadInt();
         }
 
         internal static Jump Read(BulkSerializer reader)
