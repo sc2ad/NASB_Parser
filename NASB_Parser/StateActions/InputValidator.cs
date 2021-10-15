@@ -1,4 +1,4 @@
-﻿using NASB_Parser.FloatStates;
+﻿using NASB_Parser.FloatSources;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -40,7 +40,8 @@ namespace NASB_Parser.StateActions
                 {
                     Validators.Add(new InputValidator(reader));
                 }
-            } else if (len < -1)
+            }
+            else if (len < -1)
             {
                 throw new ReadException(reader, $"Cannot create an {nameof(InputValidator)} collection with length: {len}!");
             }
