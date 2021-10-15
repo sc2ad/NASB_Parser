@@ -13,13 +13,13 @@ namespace NASB_Parser.CheckThings
         {
         }
 
-        internal CheckThing(BulkSerializer reader)
+        internal CheckThing(BulkSerializeReader reader)
         {
             Id = (TypeId)reader.ReadInt();
             Version = reader.ReadInt();
         }
 
-        public static CheckThing Read(BulkSerializer reader)
+        public static CheckThing Read(BulkSerializeReader reader)
         {
             return (TypeId)reader.PeekInt() switch
             {

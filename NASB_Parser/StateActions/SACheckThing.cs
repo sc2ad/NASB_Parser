@@ -16,7 +16,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SACheckThing(BulkSerializer reader) : base(reader)
+        internal SACheckThing(BulkSerializeReader reader) : base(reader)
         {
             CheckThing = CheckThing.Read(reader);
             Action = Read(reader);

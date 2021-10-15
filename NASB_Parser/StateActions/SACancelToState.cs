@@ -13,7 +13,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SACancelToState(BulkSerializer reader) : base(reader)
+        internal SACancelToState(BulkSerializeReader reader) : base(reader)
         {
             ToState = reader.ReadString();
             Soft = reader.ReadBool();

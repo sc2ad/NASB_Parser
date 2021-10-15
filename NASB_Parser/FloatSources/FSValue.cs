@@ -17,7 +17,7 @@ namespace NASB_Parser.FloatSources
             Value = x;
         }
 
-        internal FSValue(BulkSerializer reader) : base(reader)
+        internal FSValue(BulkSerializeReader reader) : base(reader)
         {
             Value = reader.ReadFloat();
         }

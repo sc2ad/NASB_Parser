@@ -10,7 +10,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SALeaveGround(BulkSerializer reader) : base(reader)
+        internal SALeaveGround(BulkSerializeReader reader) : base(reader)
         {
         }
     }

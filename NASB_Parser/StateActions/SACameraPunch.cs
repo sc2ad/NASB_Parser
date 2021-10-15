@@ -16,7 +16,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SACameraPunch(BulkSerializer reader) : base(reader)
+        internal SACameraPunch(BulkSerializeReader reader) : base(reader)
         {
             X = FloatSource.Read(reader);
             Y = FloatSource.Read(reader);

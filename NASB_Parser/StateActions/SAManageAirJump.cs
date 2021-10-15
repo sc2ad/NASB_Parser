@@ -12,7 +12,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAManageAirJump(BulkSerializer reader) : base(reader)
+        internal SAManageAirJump(BulkSerializeReader reader) : base(reader)
         {
             Manage = (ManageType)reader.ReadInt();
         }

@@ -12,7 +12,7 @@ namespace NASB_Parser.CheckThings
         {
         }
 
-        internal CTCheckTech(BulkSerializer reader) : base(reader)
+        internal CTCheckTech(BulkSerializeReader reader) : base(reader)
         {
             TechTimerId = reader.ReadString();
         }

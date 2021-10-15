@@ -12,7 +12,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SASetupHurtboxes(BulkSerializer reader) : base(reader)
+        internal SASetupHurtboxes(BulkSerializeReader reader) : base(reader)
         {
             HurtSetSetup = new HurtSetSetup(reader);
         }

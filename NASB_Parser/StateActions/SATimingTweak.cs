@@ -22,7 +22,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SATimingTweak(BulkSerializer reader) : base(reader)
+        internal SATimingTweak(BulkSerializeReader reader) : base(reader)
         {
             AnimId = reader.ReadString();
             RootAnimId = reader.ReadString();

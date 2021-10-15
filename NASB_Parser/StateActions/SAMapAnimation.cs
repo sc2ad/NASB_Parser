@@ -13,7 +13,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAMapAnimation(BulkSerializer reader) : base(reader)
+        internal SAMapAnimation(BulkSerializeReader reader) : base(reader)
         {
             Map = reader.ReadList(r => new MapPoint(r));
         }
@@ -31,7 +31,7 @@ namespace NASB_Parser.StateActions
             {
             }
 
-            internal MapPoint(BulkSerializer reader)
+            internal MapPoint(BulkSerializeReader reader)
             {
                 _ = reader.ReadInt();
                 RootAnim = reader.ReadBool();

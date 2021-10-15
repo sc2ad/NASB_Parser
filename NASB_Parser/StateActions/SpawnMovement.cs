@@ -15,7 +15,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SpawnMovement(BulkSerializer reader)
+        internal SpawnMovement(BulkSerializeReader reader)
         {
             _ = reader.ReadInt();
             ToBone = reader.ReadString();

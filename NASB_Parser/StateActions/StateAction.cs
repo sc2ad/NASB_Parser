@@ -14,14 +14,14 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal StateAction(BulkSerializer reader)
+        internal StateAction(BulkSerializeReader reader)
         {
             // Reads past two ints
             Id = (TypeId)reader.ReadInt();
             Version = reader.ReadInt();
         }
 
-        public static StateAction Read(BulkSerializer reader)
+        public static StateAction Read(BulkSerializeReader reader)
         {
             return (TypeId)reader.PeekInt() switch
             {

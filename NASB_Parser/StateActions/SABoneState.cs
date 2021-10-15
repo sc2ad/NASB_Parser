@@ -13,7 +13,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SABoneState(BulkSerializer reader) : base(reader)
+        internal SABoneState(BulkSerializeReader reader) : base(reader)
         {
             State = reader.ReadBool();
             Bone = reader.ReadString();

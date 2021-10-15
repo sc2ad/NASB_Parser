@@ -14,7 +14,7 @@ namespace NASB_Parser.FloatSources
         {
         }
 
-        internal FSRandom(BulkSerializer reader) : base(reader)
+        internal FSRandom(BulkSerializeReader reader) : base(reader)
         {
             Ratio = reader.ReadBool();
             A = Read(reader);

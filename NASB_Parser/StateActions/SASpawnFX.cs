@@ -26,7 +26,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SASpawnFX(BulkSerializer reader) : base(reader)
+        internal SASpawnFX(BulkSerializeReader reader) : base(reader)
         {
             Dynamic = reader.ReadBool();
             Track = reader.ReadBool();

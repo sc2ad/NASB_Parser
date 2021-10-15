@@ -13,7 +13,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SASetHitboxSFX(BulkSerializer reader) : base(reader)
+        internal SASetHitboxSFX(BulkSerializeReader reader) : base(reader)
         {
             Hitbox = reader.ReadInt();
             SfxId = reader.ReadString();

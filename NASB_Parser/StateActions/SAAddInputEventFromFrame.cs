@@ -12,7 +12,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAAddInputEventFromFrame(BulkSerializer reader) : base(reader)
+        internal SAAddInputEventFromFrame(BulkSerializeReader reader) : base(reader)
         {
             AddEvent = (GIEV)reader.ReadInt();
         }

@@ -21,7 +21,7 @@ namespace NASB_Parser.Jumps
         {
         }
 
-        internal AirDashJump(BulkSerializer reader) : base(reader)
+        internal AirDashJump(BulkSerializeReader reader) : base(reader)
         {
             EaseSpeed = (Ease)reader.ReadInt();
             XDir = FloatSource.Read(reader);

@@ -12,7 +12,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAOnLeaveEdge(BulkSerializer reader) : base(reader)
+        internal SAOnLeaveEdge(BulkSerializeReader reader) : base(reader)
         {
             Action = Read(reader);
         }

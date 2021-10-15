@@ -13,7 +13,7 @@ namespace NASB_Parser.ObjectSources
         {
         }
 
-        internal OSFloat(BulkSerializer reader) : base(reader)
+        internal OSFloat(BulkSerializeReader reader) : base(reader)
         {
             Source = FloatSource.Read(reader);
         }

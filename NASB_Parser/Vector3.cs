@@ -13,7 +13,7 @@ namespace NASB_Parser
 
     public static class ReaderExtensions
     {
-        public static Vector3 ReadVector3(this BulkSerializer reader)
+        public static Vector3 ReadVector3(this BulkSerializeReader reader)
         {
             return new Vector3 { x = reader.ReadFloat(), y = reader.ReadFloat(), z = reader.ReadFloat() };
         }

@@ -12,7 +12,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAProxyMove(BulkSerializer reader) : base(reader)
+        internal SAProxyMove(BulkSerializeReader reader) : base(reader)
         {
             MoveId = reader.ReadString();
         }

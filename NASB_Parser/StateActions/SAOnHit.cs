@@ -14,7 +14,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAOnHit(BulkSerializer reader) : base(reader)
+        internal SAOnHit(BulkSerializeReader reader) : base(reader)
         {
             Hitbox = reader.ReadBool();
             Box = reader.ReadInt();

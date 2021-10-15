@@ -16,7 +16,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAPlaySFXTimeline(BulkSerializer reader) : base(reader)
+        internal SAPlaySFXTimeline(BulkSerializeReader reader) : base(reader)
         {
             Manip = (ManipType)reader.ReadInt();
             Loop = reader.ReadBool();

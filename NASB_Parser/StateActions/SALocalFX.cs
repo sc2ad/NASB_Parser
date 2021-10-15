@@ -13,7 +13,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SALocalFX(BulkSerializer reader) : base(reader)
+        internal SALocalFX(BulkSerializeReader reader) : base(reader)
         {
             ActionType = (LocalFXAction)reader.ReadInt();
             Id = reader.ReadString();

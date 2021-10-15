@@ -14,9 +14,9 @@ namespace JsonDumper
         {
             var watch = new Stopwatch();
             watch.Start();
-            BulkSerializer ser;
+            BulkSerializeReader ser;
             using (var fsread = File.OpenRead(fullPath))
-                ser = new BulkSerializer(fsread);
+                ser = new BulkSerializeReader(fsread);
             watch.Stop();
             Console.WriteLine($"Parsing took: {watch.Elapsed}");
             watch.Reset();
@@ -53,7 +53,7 @@ namespace JsonDumper
         private static void Main(string[] args)
         {
             Console.WriteLine("Enter path to exported TextAsset data...");
-            var p = @"D:\NASB_Managed\Characters";
+            var p = @"D:\NASB_Managed\TextAsset";
             while (!File.Exists(p) && !Directory.Exists(p))
             {
                 Console.WriteLine("Enter a valid path!");

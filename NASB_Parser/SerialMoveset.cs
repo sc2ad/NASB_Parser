@@ -8,7 +8,7 @@ namespace NASB_Parser
     {
         public List<IdState> States { get; } = new List<IdState>();
 
-        public SerialMoveset(BulkSerializer reader)
+        public SerialMoveset(BulkSerializeReader reader)
         {
             reader.Reset();
             _ = reader.ReadInt();

@@ -12,7 +12,7 @@ namespace NASB_Parser.FloatSources
         {
         }
 
-        internal FSData(BulkSerializer reader) : base(reader)
+        internal FSData(BulkSerializeReader reader) : base(reader)
         {
             Id = reader.ReadString();
         }

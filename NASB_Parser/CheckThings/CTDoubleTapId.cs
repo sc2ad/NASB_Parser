@@ -13,7 +13,7 @@ namespace NASB_Parser.CheckThings
         {
         }
 
-        internal CTDoubleTapId(BulkSerializer reader) : base(reader)
+        internal CTDoubleTapId(BulkSerializeReader reader) : base(reader)
         {
             TapDir = (SimpleControlDir)reader.ReadInt();
             Window = reader.ReadInt();

@@ -13,7 +13,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAStopJump(BulkSerializer reader) : base(reader)
+        internal SAStopJump(BulkSerializeReader reader) : base(reader)
         {
             StopAll = reader.ReadBool();
             JumpId = reader.ReadString();

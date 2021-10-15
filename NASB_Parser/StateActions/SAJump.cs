@@ -14,7 +14,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAJump(BulkSerializer reader) : base(reader)
+        internal SAJump(BulkSerializeReader reader) : base(reader)
         {
             JumpId = reader.ReadString();
             Jump = Jump.Read(reader);

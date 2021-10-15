@@ -10,7 +10,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SASetStagePartsDefault(BulkSerializer reader) : base(reader)
+        internal SASetStagePartsDefault(BulkSerializeReader reader) : base(reader)
         {
         }
     }

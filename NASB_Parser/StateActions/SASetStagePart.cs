@@ -13,7 +13,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SASetStagePart(BulkSerializer reader) : base(reader)
+        internal SASetStagePart(BulkSerializeReader reader) : base(reader)
         {
             SetTo = reader.ReadBool();
             PartId = reader.ReadString();

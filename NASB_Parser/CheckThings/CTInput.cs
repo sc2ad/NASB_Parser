@@ -15,7 +15,7 @@ namespace NASB_Parser.CheckThings
         {
         }
 
-        internal CTInput(BulkSerializer reader) : base(reader)
+        internal CTInput(BulkSerializeReader reader) : base(reader)
         {
             InputValidator = new InputValidator(reader);
             Frames = reader.ReadInt();

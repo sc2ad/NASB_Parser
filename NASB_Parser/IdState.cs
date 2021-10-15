@@ -14,7 +14,7 @@ namespace NASB_Parser
         {
         }
 
-        internal IdState(BulkSerializer reader)
+        internal IdState(BulkSerializeReader reader)
         {
             // Throwaway unused id
             _ = reader.ReadInt();

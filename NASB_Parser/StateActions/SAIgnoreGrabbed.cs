@@ -10,7 +10,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAIgnoreGrabbed(BulkSerializer reader) : base(reader)
+        internal SAIgnoreGrabbed(BulkSerializeReader reader) : base(reader)
         {
         }
     }

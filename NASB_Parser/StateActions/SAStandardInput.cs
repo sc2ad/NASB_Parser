@@ -14,7 +14,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAStandardInput(BulkSerializer reader) : base(reader)
+        internal SAStandardInput(BulkSerializeReader reader) : base(reader)
         {
             Frames = reader.ReadFloat();
             ForceCheck = reader.ReadBool();
@@ -32,7 +32,7 @@ namespace NASB_Parser.StateActions
             {
             }
 
-            internal StandardConfig(BulkSerializer reader)
+            internal StandardConfig(BulkSerializeReader reader)
             {
                 _ = reader.ReadInt();
                 DontCheck0 = (byte)reader.ReadInt();

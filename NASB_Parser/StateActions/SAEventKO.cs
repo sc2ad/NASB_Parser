@@ -12,7 +12,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAEventKO(BulkSerializer reader) : base(reader)
+        internal SAEventKO(BulkSerializeReader reader) : base(reader)
         {
             KO = (KOType)reader.ReadInt();
         }

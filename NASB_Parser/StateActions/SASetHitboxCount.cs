@@ -12,7 +12,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SASetHitboxCount(BulkSerializer reader) : base(reader)
+        internal SASetHitboxCount(BulkSerializeReader reader) : base(reader)
         {
             HitboxCount = reader.ReadInt();
         }

@@ -13,7 +13,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAManipHitbox(BulkSerializer reader) : base(reader)
+        internal SAManipHitbox(BulkSerializeReader reader) : base(reader)
         {
             Manips = reader.ReadList(r => new HBM(r));
         }
@@ -46,7 +46,7 @@ namespace NASB_Parser.StateActions
             {
             }
 
-            internal HBM(BulkSerializer reader)
+            internal HBM(BulkSerializeReader reader)
             {
                 _ = reader.ReadInt();
                 Manip = (Manip)reader.ReadInt();

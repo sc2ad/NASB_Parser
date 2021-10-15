@@ -22,7 +22,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal HurtBone(BulkSerializer reader)
+        internal HurtBone(BulkSerializeReader reader)
         {
             int version = reader.ReadInt();
             Type = (HurtType)reader.ReadInt();

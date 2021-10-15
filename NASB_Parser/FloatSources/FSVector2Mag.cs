@@ -13,7 +13,7 @@ namespace NASB_Parser.FloatSources
         {
         }
 
-        internal FSVector2Mag(BulkSerializer reader) : base(reader)
+        internal FSVector2Mag(BulkSerializeReader reader) : base(reader)
         {
             X = Read(reader);
             Y = Read(reader);

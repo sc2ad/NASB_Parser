@@ -14,7 +14,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAGUAMessageObject(BulkSerializer reader)
+        internal SAGUAMessageObject(BulkSerializeReader reader)
         {
             PlainMessage = reader.ReadString();
             Dynamics = reader.ReadList(r => new MessageDynamic(r));
@@ -29,7 +29,7 @@ namespace NASB_Parser.StateActions
             {
             }
 
-            internal MessageDynamic(BulkSerializer reader)
+            internal MessageDynamic(BulkSerializeReader reader)
             {
                 _ = reader.ReadInt();
                 Id = reader.ReadString();

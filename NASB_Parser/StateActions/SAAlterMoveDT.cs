@@ -15,7 +15,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAAlterMoveDT(BulkSerializer reader) : base(reader)
+        internal SAAlterMoveDT(BulkSerializeReader reader) : base(reader)
         {
             ClearAMDT = reader.ReadBool();
             After = FloatSource.Read(reader);

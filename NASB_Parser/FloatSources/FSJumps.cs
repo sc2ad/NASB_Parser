@@ -12,7 +12,7 @@ namespace NASB_Parser.FloatSources
         {
         }
 
-        internal FSJumps(BulkSerializer reader) : base(reader)
+        internal FSJumps(BulkSerializeReader reader) : base(reader)
         {
             Attribute = (Attributes)reader.ReadInt();
         }

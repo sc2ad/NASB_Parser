@@ -17,7 +17,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAAlterMoveVel(BulkSerializer reader) : base(reader)
+        internal SAAlterMoveVel(BulkSerializeReader reader) : base(reader)
         {
             ClearAMV = reader.ReadBool();
             AlterX = FloatSource.Read(reader);

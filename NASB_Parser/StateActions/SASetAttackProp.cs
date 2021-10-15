@@ -13,7 +13,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SASetAttackProp(BulkSerializer reader) : base(reader)
+        internal SASetAttackProp(BulkSerializeReader reader) : base(reader)
         {
             Hitbox = reader.ReadInt();
             Prop = reader.ReadString();

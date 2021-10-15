@@ -12,7 +12,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SALaunchGrabbed(BulkSerializer reader) : base(reader)
+        internal SALaunchGrabbed(BulkSerializeReader reader) : base(reader)
         {
             AtkProp = reader.ReadString();
         }

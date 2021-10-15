@@ -13,7 +13,7 @@ namespace NASB_Parser
         {
         }
 
-        internal static AgentState Read(BulkSerializer reader)
+        internal static AgentState Read(BulkSerializeReader reader)
         {
             int tid = reader.ReadInt();
             if (tid != 0)
@@ -21,7 +21,7 @@ namespace NASB_Parser
             return new AgentState(reader);
         }
 
-        private AgentState(BulkSerializer reader)
+        private AgentState(BulkSerializeReader reader)
         {
             _ = reader.ReadInt();
             CustomCall = reader.ReadString();

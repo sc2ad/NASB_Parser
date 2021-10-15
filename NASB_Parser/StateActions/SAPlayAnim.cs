@@ -14,7 +14,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAPlayAnim(BulkSerializer reader) : base(reader)
+        internal SAPlayAnim(BulkSerializeReader reader) : base(reader)
         {
             FromStart = reader.ReadBool();
             Anim = reader.ReadString();

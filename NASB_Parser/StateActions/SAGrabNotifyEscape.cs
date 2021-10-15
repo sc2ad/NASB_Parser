@@ -10,7 +10,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAGrabNotifyEscape(BulkSerializer reader) : base(reader)
+        internal SAGrabNotifyEscape(BulkSerializeReader reader) : base(reader)
         {
         }
     }

@@ -12,7 +12,7 @@ namespace NASB_Parser.FloatSources
         {
         }
 
-        internal FSSpeed(BulkSerializer reader) : base(reader)
+        internal FSSpeed(BulkSerializeReader reader) : base(reader)
         {
             SpeedType = (FSSpeedType)reader.ReadInt();
         }

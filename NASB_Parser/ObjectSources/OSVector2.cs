@@ -14,7 +14,7 @@ namespace NASB_Parser.ObjectSources
         {
         }
 
-        internal OSVector2(BulkSerializer reader) : base(reader)
+        internal OSVector2(BulkSerializeReader reader) : base(reader)
         {
             X = FloatSource.Read(reader);
             Y = FloatSource.Read(reader);

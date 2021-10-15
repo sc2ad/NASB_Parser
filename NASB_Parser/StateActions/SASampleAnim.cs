@@ -10,7 +10,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SASampleAnim(BulkSerializer reader) : base(reader)
+        internal SASampleAnim(BulkSerializeReader reader) : base(reader)
         {
         }
     }

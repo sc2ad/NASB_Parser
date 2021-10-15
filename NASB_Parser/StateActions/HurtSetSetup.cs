@@ -12,7 +12,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal HurtSetSetup(BulkSerializer reader)
+        internal HurtSetSetup(BulkSerializeReader reader)
         {
             _ = reader.ReadInt();
             HurtBones = reader.ReadList(r => new HurtBone(r));

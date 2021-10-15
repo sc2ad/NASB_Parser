@@ -15,7 +15,7 @@ namespace NASB_Parser.CheckThings
         {
         }
 
-        internal CTCompareFloat(BulkSerializer reader) : base(reader)
+        internal CTCompareFloat(BulkSerializeReader reader) : base(reader)
         {
             Way = (CheckWay)reader.ReadInt();
             A = FloatSource.Read(reader);

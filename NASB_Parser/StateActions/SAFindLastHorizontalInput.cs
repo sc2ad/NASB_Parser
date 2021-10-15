@@ -13,7 +13,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAFindLastHorizontalInput(BulkSerializer reader) : base(reader)
+        internal SAFindLastHorizontalInput(BulkSerializeReader reader) : base(reader)
         {
             Search = (SearchType)reader.ReadInt();
             ResultInScratch = reader.ReadInt();

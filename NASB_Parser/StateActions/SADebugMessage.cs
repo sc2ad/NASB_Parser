@@ -12,7 +12,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        public SADebugMessage(BulkSerializer reader) : base(reader)
+        public SADebugMessage(BulkSerializeReader reader) : base(reader)
         {
             Message = reader.ReadString();
         }

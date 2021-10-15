@@ -13,7 +13,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAOnCancel(BulkSerializer reader) : base(reader)
+        internal SAOnCancel(BulkSerializeReader reader) : base(reader)
         {
             Id = reader.ReadString();
             Action = Read(reader);

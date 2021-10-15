@@ -24,7 +24,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal MovementConfig(BulkSerializer reader)
+        internal MovementConfig(BulkSerializeReader reader)
         {
             bool hasSimple = reader.ReadBool();
             GetParented = reader.ReadBool();

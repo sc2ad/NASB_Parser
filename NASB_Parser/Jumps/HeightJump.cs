@@ -13,7 +13,7 @@ namespace NASB_Parser.Jumps
         {
         }
 
-        internal HeightJump(BulkSerializer reader) : base(reader)
+        internal HeightJump(BulkSerializeReader reader) : base(reader)
         {
             Height = FloatSource.Read(reader);
         }

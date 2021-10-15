@@ -11,7 +11,7 @@ namespace NASB_Parser.FloatSources
         public FSBones()
         { }
 
-        internal FSBones(BulkSerializer reader) : base(reader)
+        internal FSBones(BulkSerializeReader reader) : base(reader)
         {
             Attribute = (Attributes)reader.ReadInt();
         }

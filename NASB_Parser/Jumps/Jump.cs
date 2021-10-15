@@ -13,13 +13,13 @@ namespace NASB_Parser.Jumps
         {
         }
 
-        internal Jump(BulkSerializer reader)
+        internal Jump(BulkSerializeReader reader)
         {
             Id = (TypeId)reader.ReadInt();
             Version = reader.ReadInt();
         }
 
-        internal static Jump Read(BulkSerializer reader)
+        internal static Jump Read(BulkSerializeReader reader)
         {
             return (TypeId)reader.PeekInt() switch
             {

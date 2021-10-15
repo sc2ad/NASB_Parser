@@ -24,7 +24,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAConfigHitbox(BulkSerializer reader) : base(reader)
+        internal SAConfigHitbox(BulkSerializeReader reader) : base(reader)
         {
             Hitbox = reader.ReadInt();
             ForceZ0 = reader.ReadBool();

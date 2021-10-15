@@ -12,7 +12,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SADeactivateInputAction(BulkSerializer reader) : base(reader)
+        internal SADeactivateInputAction(BulkSerializeReader reader) : base(reader)
         {
             Id = reader.ReadString();
         }

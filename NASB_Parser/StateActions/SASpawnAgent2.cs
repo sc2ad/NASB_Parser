@@ -37,7 +37,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SASpawnAgent2(BulkSerializer reader) : base(reader)
+        internal SASpawnAgent2(BulkSerializeReader reader) : base(reader)
         {
             Bank = reader.ReadString();
             Id = reader.ReadString();
@@ -78,7 +78,7 @@ namespace NASB_Parser.StateActions
             public string SpawnedAgentDataId { get; set; }
             public FloatSource SpawnedAgentDataSetValue { get; set; }
 
-            public AddedSpawnData(BulkSerializer reader)
+            public AddedSpawnData(BulkSerializeReader reader)
             {
                 SpawnedAgentDataId = reader.ReadString();
                 SpawnedAgentDataSetValue = FloatSource.Read(reader);

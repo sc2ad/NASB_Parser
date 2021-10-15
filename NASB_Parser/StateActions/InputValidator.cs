@@ -21,7 +21,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        public InputValidator(BulkSerializer reader)
+        public InputValidator(BulkSerializeReader reader)
         {
             _ = reader.ReadInt();
             InputType = (ValidatorInputType)reader.ReadInt();

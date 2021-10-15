@@ -6,19 +6,19 @@ namespace NASB_Parser
 {
     public class ReadException : Exception
     {
-        private readonly BulkSerializer reader;
+        private readonly BulkSerializeReader reader;
 
-        public ReadException(BulkSerializer r) : base()
+        public ReadException(BulkSerializeReader r) : base()
         {
             reader = r;
         }
 
-        public ReadException(BulkSerializer r, string m) : base(m)
+        public ReadException(BulkSerializeReader r, string m) : base(m)
         {
             reader = r;
         }
 
-        public ReadException(BulkSerializer r, string m, Exception inner) : base(m, inner)
+        public ReadException(BulkSerializeReader r, string m, Exception inner) : base(m, inner)
         {
             reader = r;
         }

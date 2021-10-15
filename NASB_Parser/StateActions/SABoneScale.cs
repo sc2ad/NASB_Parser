@@ -14,7 +14,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SABoneScale(BulkSerializer reader) : base(reader)
+        internal SABoneScale(BulkSerializeReader reader) : base(reader)
         {
             Bone = reader.ReadString();
             Source = FloatSource.Read(reader);

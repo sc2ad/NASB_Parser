@@ -19,7 +19,7 @@ namespace NASB_Parser.Jumps
         {
         }
 
-        internal KnockbackJump(BulkSerializer reader) : base(reader)
+        internal KnockbackJump(BulkSerializeReader reader) : base(reader)
         {
             XDir = FloatSource.Read(reader);
             YDir = FloatSource.Read(reader);

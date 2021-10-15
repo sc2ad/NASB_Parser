@@ -12,7 +12,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SACustomCall(BulkSerializer reader) : base(reader)
+        internal SACustomCall(BulkSerializeReader reader) : base(reader)
         {
             CallId = reader.ReadString();
         }

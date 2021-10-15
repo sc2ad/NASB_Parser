@@ -12,7 +12,7 @@ namespace NASB_Parser.CheckThings
         {
         }
 
-        internal CTGrabbedAgent(BulkSerializer reader) : base(reader)
+        internal CTGrabbedAgent(BulkSerializeReader reader) : base(reader)
         {
             MatchTags = reader.ReadList(r => r.ReadString());
         }

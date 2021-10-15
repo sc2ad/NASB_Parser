@@ -14,7 +14,7 @@ namespace NASB_Parser.CheckThings
         {
         }
 
-        internal CTInputSeries(BulkSerializer reader) : base(reader)
+        internal CTInputSeries(BulkSerializeReader reader) : base(reader)
         {
             CheckFrames = reader.ReadInt();
             InputSeries = reader.ReadList(r => new LookForInput(r));

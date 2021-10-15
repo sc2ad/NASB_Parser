@@ -15,7 +15,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SATimedAction(BulkSerializer reader) : base(reader)
+        internal SATimedAction(BulkSerializeReader reader) : base(reader)
         {
             Source = FloatSource.Read(reader);
             Repeat = reader.ReadBool();

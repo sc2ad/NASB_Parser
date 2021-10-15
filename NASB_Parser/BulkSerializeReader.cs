@@ -5,15 +5,15 @@ using System.IO;
 
 namespace NASB_Parser
 {
-    public class BulkSerializer
+    public class BulkSerializeReader
     {
-        public BulkSerializer(Stream s)
+        public BulkSerializeReader(Stream s)
         {
             using var reader = new StreamReader(s);
             Parse(reader);
         }
 
-        public BulkSerializer(string data)
+        public BulkSerializeReader(string data)
         {
             Parse(new StringReader(data));
         }
@@ -89,37 +89,6 @@ namespace NASB_Parser
             // TODO: Check to ensure that we read everything?
         }
 
-        public void Serialize(TextWriter writer)
-        {
-            writer.WriteLine(HeaderName);
-            writer.WriteLine(HeaderVersion);
-            writer.WriteLine(intData.Count);
-            writer.WriteLine(floatData.Count);
-            writer.WriteLine(floatIdx.Count);
-            writer.WriteLine(stringData.Count);
-            writer.WriteLine(stringIdx.Count);
-            foreach (var i in intData)
-            {
-                writer.WriteLine(i);
-            }
-            foreach (var f in floatData)
-            {
-                writer.WriteLine(f.ToString("R", invariantInfo));
-            }
-            foreach (var i in floatIdx)
-            {
-                writer.WriteLine(i);
-            }
-            foreach (var s in stringData)
-            {
-                writer.WriteLine(s);
-            }
-            foreach (var i in stringIdx)
-            {
-                writer.WriteLine(i);
-            }
-        }
-
         private int nextInt;
 
         public int NextInt
@@ -175,7 +144,7 @@ namespace NASB_Parser
             return stringData[stringIdx[NextString++]];
         }
 
-        public List<T> ReadList<T>(Func<BulkSerializer, T> initializer)
+        public List<T> ReadList<T>(Func<BulkSerializeReader, T> initializer)
         {
             var lst = new List<T>();
             int sz = ReadInt();
@@ -214,42 +183,6 @@ namespace NASB_Parser
         public string PeekString()
         {
             return stringData[stringIdx[NextString]];
-        }
-
-        public void AddInt(int x)
-        {
-            intData.Add(x);
-        }
-
-        public void AddFloat(float x)
-        {
-            // TODO: Use an ordered lookup here to save time, for now this will do.
-            int idx = floatData.FindIndex(f => f == x);
-            if (idx >= 0)
-            {
-                floatIdx.Add(idx);
-            }
-            else
-            {
-                floatIdx.Add(floatData.Count);
-                floatData.Add(x);
-            }
-        }
-
-        public void AddString(string s)
-        {
-            s = s.Replace('\n', '|');
-            // TODO: Use an ordered lookup here to save time, for now this will do.
-            int idx = stringData.FindIndex(f => f == s);
-            if (idx >= 0)
-            {
-                stringIdx.Add(idx);
-            }
-            else
-            {
-                stringIdx.Add(stringData.Count);
-                stringData.Add(s);
-            }
         }
     }
 }

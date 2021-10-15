@@ -11,7 +11,7 @@ namespace NASB_Parser.StateActions
         public WrapMode Wrap { get; set; }
         public bool ClingToFrames { get; set; }
 
-        public AnimConfig(BulkSerializer reader)
+        public AnimConfig(BulkSerializeReader reader)
         {
             _ = reader.ReadInt();
             Rate = reader.ReadFloat();

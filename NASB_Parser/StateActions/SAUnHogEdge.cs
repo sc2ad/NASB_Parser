@@ -10,7 +10,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAUnHogEdge(BulkSerializer reader) : base(reader)
+        internal SAUnHogEdge(BulkSerializeReader reader) : base(reader)
         {
         }
     }

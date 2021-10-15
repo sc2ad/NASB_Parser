@@ -13,7 +13,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAFastForwardState(BulkSerializer reader) : base(reader)
+        internal SAFastForwardState(BulkSerializeReader reader) : base(reader)
         {
             Frames = FloatSource.Read(reader);
         }

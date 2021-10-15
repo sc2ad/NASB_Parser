@@ -12,7 +12,7 @@ namespace NASB_Parser.FloatSources
         {
         }
 
-        internal FSPhysics(BulkSerializer reader) : base(reader)
+        internal FSPhysics(BulkSerializeReader reader) : base(reader)
         {
             PhysicsAttribute = (PhysicsAttributes)reader.ReadInt();
         }

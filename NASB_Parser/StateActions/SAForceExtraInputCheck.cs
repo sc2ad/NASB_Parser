@@ -10,7 +10,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAForceExtraInputCheck(BulkSerializer reader) : base(reader)
+        internal SAForceExtraInputCheck(BulkSerializeReader reader) : base(reader)
         {
         }
     }

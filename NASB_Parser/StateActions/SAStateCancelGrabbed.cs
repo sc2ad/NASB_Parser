@@ -12,7 +12,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAStateCancelGrabbed(BulkSerializer reader) : base(reader)
+        internal SAStateCancelGrabbed(BulkSerializeReader reader) : base(reader)
         {
             ToState = reader.ReadString();
         }

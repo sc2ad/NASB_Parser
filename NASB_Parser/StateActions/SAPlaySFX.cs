@@ -12,7 +12,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAPlaySFX(BulkSerializer reader) : base(reader)
+        internal SAPlaySFX(BulkSerializeReader reader) : base(reader)
         {
             SfxId = reader.ReadString();
         }

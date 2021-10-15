@@ -14,7 +14,7 @@ namespace NASB_Parser.CheckThings
         {
         }
 
-        internal LookForInput(BulkSerializer reader)
+        internal LookForInput(BulkSerializeReader reader)
         {
             _ = reader.ReadInt();
             MatchMinFrames = reader.ReadInt();

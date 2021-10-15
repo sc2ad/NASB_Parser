@@ -12,7 +12,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SASetCommandGrab(BulkSerializer reader) : base(reader)
+        internal SASetCommandGrab(BulkSerializeReader reader) : base(reader)
         {
             State = reader.ReadString();
         }

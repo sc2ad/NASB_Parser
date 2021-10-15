@@ -12,7 +12,7 @@ namespace NASB_Parser.FloatSources
         {
         }
 
-        internal FSInput(BulkSerializer reader) : base(reader)
+        internal FSInput(BulkSerializeReader reader) : base(reader)
         {
             Input = (CheckInput)reader.ReadInt();
         }

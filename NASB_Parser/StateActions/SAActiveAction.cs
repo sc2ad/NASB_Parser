@@ -16,7 +16,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAActiveAction(BulkSerializer reader) : base(reader)
+        internal SAActiveAction(BulkSerializeReader reader) : base(reader)
         {
             Action = Read(reader);
             FloatSource = FloatSource.Read(reader);

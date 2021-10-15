@@ -10,7 +10,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAResetOnHits(BulkSerializer reader) : base(reader)
+        internal SAResetOnHits(BulkSerializeReader reader) : base(reader)
         {
         }
     }

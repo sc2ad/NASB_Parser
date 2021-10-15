@@ -10,7 +10,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAEndGrab(BulkSerializer reader) : base(reader)
+        internal SAEndGrab(BulkSerializeReader reader) : base(reader)
         {
         }
     }

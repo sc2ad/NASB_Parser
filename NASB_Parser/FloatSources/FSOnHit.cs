@@ -12,7 +12,7 @@ namespace NASB_Parser.FloatSources
         {
         }
 
-        internal FSOnHit(BulkSerializer reader) : base(reader)
+        internal FSOnHit(BulkSerializeReader reader) : base(reader)
         {
             Param = (OnHitParam)reader.ReadInt();
         }

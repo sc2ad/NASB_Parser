@@ -16,7 +16,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        public InputTrigger(BulkSerializer reader)
+        public InputTrigger(BulkSerializeReader reader)
         {
             reader.ReadInt();
             SniffFrames = reader.ReadInt();

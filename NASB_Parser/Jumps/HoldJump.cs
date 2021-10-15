@@ -15,7 +15,7 @@ namespace NASB_Parser.Jumps
         {
         }
 
-        internal HoldJump(BulkSerializer reader) : base(reader)
+        internal HoldJump(BulkSerializeReader reader) : base(reader)
         {
             Height = FloatSource.Read(reader);
             AutoHoldFrames = FloatSource.Read(reader);

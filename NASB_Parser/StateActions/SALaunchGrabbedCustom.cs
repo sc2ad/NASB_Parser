@@ -15,7 +15,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SALaunchGrabbedCustom(BulkSerializer reader) : base(reader)
+        internal SALaunchGrabbedCustom(BulkSerializeReader reader) : base(reader)
         {
             AtkProp = reader.ReadString();
             X = FloatSource.Read(reader);

@@ -12,7 +12,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAFindFloor(BulkSerializer reader) : base(reader)
+        internal SAFindFloor(BulkSerializeReader reader) : base(reader)
         {
             SeekRange = reader.ReadFloat();
         }

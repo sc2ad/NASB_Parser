@@ -13,7 +13,7 @@ namespace NASB_Parser.FloatSources
         {
         }
 
-        internal FSLag(BulkSerializer reader) : base(reader)
+        internal FSLag(BulkSerializeReader reader) : base(reader)
         {
             LagType = (LagTypes)reader.ReadInt();
             ManipLag = (ManipLags)reader.ReadInt();

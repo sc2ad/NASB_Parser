@@ -14,7 +14,7 @@ namespace NASB_Parser.CheckThings
         {
         }
 
-        internal CTMove(BulkSerializer reader) : base(reader)
+        internal CTMove(BulkSerializeReader reader) : base(reader)
         {
             MovesetId = reader.ReadString();
             Previous = reader.ReadBool();

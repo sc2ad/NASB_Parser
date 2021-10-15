@@ -13,13 +13,13 @@ namespace NASB_Parser.ObjectSources
         {
         }
 
-        internal ObjectSource(BulkSerializer reader)
+        internal ObjectSource(BulkSerializeReader reader)
         {
             Id = (TypeId)reader.ReadInt();
             Version = reader.ReadInt();
         }
 
-        public static ObjectSource Read(BulkSerializer reader)
+        public static ObjectSource Read(BulkSerializeReader reader)
         {
             return (TypeId)reader.PeekInt() switch
             {

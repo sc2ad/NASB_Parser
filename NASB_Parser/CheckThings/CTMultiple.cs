@@ -13,7 +13,7 @@ namespace NASB_Parser.CheckThings
         {
         }
 
-        internal CTMultiple(BulkSerializer reader) : base(reader)
+        internal CTMultiple(BulkSerializeReader reader) : base(reader)
         {
             Match = (CheckMatch)reader.ReadInt();
             Checklist = reader.ReadList(r => Read(r));

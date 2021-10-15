@@ -12,7 +12,7 @@ namespace NASB_Parser.CheckThings
         {
         }
 
-        internal CTGrabId(BulkSerializer reader) : base(reader)
+        internal CTGrabId(BulkSerializeReader reader) : base(reader)
         {
             CheckType = (CheckTypes)reader.ReadInt();
         }

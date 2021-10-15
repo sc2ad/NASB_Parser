@@ -15,7 +15,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAManipDecorChain(BulkSerializer reader) : base(reader)
+        internal SAManipDecorChain(BulkSerializeReader reader) : base(reader)
         {
             ManipIndex = reader.ReadInt();
             Manip = (ManipType)reader.ReadInt();

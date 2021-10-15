@@ -10,7 +10,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAUpdateHurtboxes(BulkSerializer reader) : base(reader)
+        internal SAUpdateHurtboxes(BulkSerializeReader reader) : base(reader)
         {
         }
     }

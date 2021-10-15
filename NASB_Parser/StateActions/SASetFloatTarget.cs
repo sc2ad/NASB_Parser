@@ -13,7 +13,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SASetFloatTarget(BulkSerializer reader) : base(reader)
+        internal SASetFloatTarget(BulkSerializeReader reader) : base(reader)
         {
             Sets = reader.ReadList(r => new SetFloat(r));
         }
@@ -28,7 +28,7 @@ namespace NASB_Parser.StateActions
             {
             }
 
-            internal SetFloat(BulkSerializer reader)
+            internal SetFloat(BulkSerializeReader reader)
             {
                 _ = reader.ReadInt();
                 Target = FloatSource.Read(reader);

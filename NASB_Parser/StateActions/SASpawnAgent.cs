@@ -21,7 +21,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SASpawnAgent(BulkSerializer reader) : base(reader)
+        internal SASpawnAgent(BulkSerializeReader reader) : base(reader)
         {
             Bank = reader.ReadString();
             Id = reader.ReadString();

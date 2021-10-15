@@ -16,7 +16,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAColorTint(BulkSerializer reader) : base(reader)
+        internal SAColorTint(BulkSerializeReader reader) : base(reader)
         {
             Id = reader.ReadString();
             Activate = reader.ReadBool();

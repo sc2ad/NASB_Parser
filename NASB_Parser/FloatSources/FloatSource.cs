@@ -14,13 +14,13 @@ namespace NASB_Parser.FloatSources
         {
         }
 
-        internal FloatSource(BulkSerializer reader)
+        internal FloatSource(BulkSerializeReader reader)
         {
             Id = (TypeId)reader.ReadInt();
             Version = reader.ReadInt();
         }
 
-        public static FloatSource Read(BulkSerializer reader)
+        public static FloatSource Read(BulkSerializeReader reader)
         {
             return (TypeId)reader.PeekInt() switch
             {

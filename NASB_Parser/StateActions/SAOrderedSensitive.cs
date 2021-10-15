@@ -12,7 +12,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAOrderedSensitive(BulkSerializer reader) : base(reader)
+        internal SAOrderedSensitive(BulkSerializeReader reader) : base(reader)
         {
             Actions = reader.ReadList(r => Read(r));
         }

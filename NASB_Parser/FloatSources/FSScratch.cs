@@ -12,7 +12,7 @@ namespace NASB_Parser.FloatSources
         {
         }
 
-        internal FSScratch(BulkSerializer reader) : base(reader)
+        internal FSScratch(BulkSerializeReader reader) : base(reader)
         {
             Scratch = reader.ReadInt();
         }

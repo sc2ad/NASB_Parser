@@ -14,7 +14,7 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal SAInputAction(BulkSerializer reader) : base(reader)
+        internal SAInputAction(BulkSerializeReader reader) : base(reader)
         {
             Frames = reader.ReadFloat();
             Id = reader.ReadString();

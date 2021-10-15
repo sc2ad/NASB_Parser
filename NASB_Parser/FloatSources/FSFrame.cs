@@ -14,7 +14,7 @@ namespace NASB_Parser.FloatSources
         {
         }
 
-        internal FSFrame(BulkSerializer reader) : base(reader)
+        internal FSFrame(BulkSerializeReader reader) : base(reader)
         {
         }
     }
