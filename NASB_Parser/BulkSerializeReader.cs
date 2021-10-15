@@ -27,8 +27,6 @@ namespace NASB_Parser
         private List<string> stringData;
         private List<int> stringIdx;
 
-        private static readonly NumberFormatInfo invariantInfo = NumberFormatInfo.InvariantInfo;
-
         public int IntCount { get => intData.Count; }
         public int FloatCount { get => floatData.Count; }
         public int FloatIdxCount { get => floatIdx.Count; }
@@ -63,7 +61,7 @@ namespace NASB_Parser
             }
             for (int i = 0; i < floatDataSize; i++)
             {
-                if (float.TryParse(reader.ReadLine(), NumberStyles.Any, invariantInfo, out var dat))
+                if (float.TryParse(reader.ReadLine(), NumberStyles.Any, Util.invariantInfo, out var dat))
                     floatData.Add(dat);
                 else
                     floatData.Add(0);
