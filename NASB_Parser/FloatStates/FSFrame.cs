@@ -4,9 +4,13 @@ using System.Text;
 
 namespace NASB_Parser.FloatStates
 {
-    public class FSFrame : FloatSource
+    public class FSFrame : FSValue
     {
         public FSFrame()
+        {
+        }
+
+        public FSFrame(float x) : base(x)
         {
         }
 

@@ -16,7 +16,7 @@ namespace NASB_Parser.StateActions
 
         internal SAPlayAnim(BulkSerializer reader) : base(reader)
         {
-            FromStart = reader.ReadInt() > 0;
+            FromStart = reader.ReadBool();
             Anim = reader.ReadString();
             Cfg = new AnimConfig(reader);
         }

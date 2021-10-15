@@ -125,7 +125,7 @@ namespace NASB_Parser
         public int NextInt
         {
             get => nextInt;
-            set => nextInt = value < intData.Count ? value :
+            set => nextInt = value <= intData.Count ? value :
                 throw new IndexOutOfRangeException($"Cannot assign {nameof(NextInt)} to a value greater than the length of the int data!");
         }
 
@@ -134,7 +134,7 @@ namespace NASB_Parser
         public int NextFloat
         {
             get => nextFloat;
-            set => nextFloat = value < floatIdx.Count ? value :
+            set => nextFloat = value <= floatIdx.Count ? value :
                 throw new IndexOutOfRangeException($"Cannot assign {nameof(NextFloat)} to a value greater than the length of the float index data!");
         }
 
@@ -143,7 +143,7 @@ namespace NASB_Parser
         public int NextString
         {
             get => nextString;
-            set => nextString = value < stringIdx.Count ? value :
+            set => nextString = value <= stringIdx.Count ? value :
                 throw new IndexOutOfRangeException($"Cannot assign {nameof(NextString)} to a value greater than the length of the string index data!");
         }
 
@@ -160,6 +160,11 @@ namespace NASB_Parser
             return intData[NextInt++];
         }
 
+        public bool ReadBool()
+        {
+            return ReadInt() > 0;
+        }
+
         public float ReadFloat()
         {
             return floatData[floatIdx[NextFloat++]];
@@ -168,6 +173,25 @@ namespace NASB_Parser
         public string ReadString()
         {
             return stringData[stringIdx[NextString++]];
+        }
+
+        public List<T> ReadList<T>(Func<BulkSerializer, T> initializer)
+        {
+            var lst = new List<T>();
+            int sz = ReadInt();
+            if (sz > 0)
+            {
+                lst.Capacity = sz;
+                for (int i = 0; i < sz; i++)
+                {
+                    lst.Add(initializer(this));
+                }
+            }
+            else if (sz < 0)
+            {
+                throw new ReadException(this, $"Invalid size for array: {sz}");
+            }
+            return lst;
         }
 
         public void Reset()

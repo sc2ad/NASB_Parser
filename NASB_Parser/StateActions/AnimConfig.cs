@@ -17,7 +17,7 @@ namespace NASB_Parser.StateActions
             Rate = reader.ReadFloat();
             Weight = reader.ReadFloat();
             Wrap = (WrapMode)reader.ReadInt();
-            ClingToFrames = reader.ReadInt() > 0;
+            ClingToFrames = reader.ReadBool();
         }
 
         public enum WrapMode

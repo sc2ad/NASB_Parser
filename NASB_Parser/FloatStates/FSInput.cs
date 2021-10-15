@@ -12,10 +12,8 @@ namespace NASB_Parser.FloatStates
         {
         }
 
-        internal FSInput(BulkSerializer reader)
+        internal FSInput(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
             Input = (CheckInput)reader.ReadInt();
         }
 

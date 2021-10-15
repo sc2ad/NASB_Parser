@@ -13,10 +13,8 @@ namespace NASB_Parser.FloatStates
         {
         }
 
-        internal FSEffects(BulkSerializer reader)
+        internal FSEffects(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
             LocalFxId = reader.ReadString();
         }
 

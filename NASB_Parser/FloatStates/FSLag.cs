@@ -13,10 +13,8 @@ namespace NASB_Parser.FloatStates
         {
         }
 
-        internal FSLag(BulkSerializer reader)
+        internal FSLag(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
             LagType = (LagTypes)reader.ReadInt();
             ManipLag = (ManipLags)reader.ReadInt();
         }

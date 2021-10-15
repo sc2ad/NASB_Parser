@@ -15,10 +15,8 @@ namespace NASB_Parser.FloatStates
         {
         }
 
-        internal FSFunc(BulkSerializer reader)
+        internal FSFunc(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
             Way = (FuncWay)reader.ReadInt();
             ContainerA = Read(reader);
             ContainerB = Read(reader);

@@ -14,7 +14,7 @@ namespace NASB_Parser.StateActions
 
         internal SASnapAnimWeights(BulkSerializer reader) : base(reader)
         {
-            ForceSample = reader.ReadInt() > 0;
+            ForceSample = reader.ReadBool();
         }
     }
 }

@@ -12,10 +12,8 @@ namespace NASB_Parser.FloatStates
         {
         }
 
-        internal FSPhysics(BulkSerializer reader)
+        internal FSPhysics(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
             PhysicsAttribute = (PhysicsAttributes)reader.ReadInt();
         }
 

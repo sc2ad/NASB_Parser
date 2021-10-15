@@ -18,7 +18,7 @@ namespace NASB_Parser.CheckThings
 
         public static CheckThing Read(BulkSerializer reader)
         {
-            return (TypeId)reader.ReadInt() switch
+            return (TypeId)reader.PeekInt() switch
             {
                 TypeId.MultipleId => new CTMultiple(reader),
                 TypeId.CompareId => new CTCompareFloat(reader),
@@ -30,7 +30,8 @@ namespace NASB_Parser.CheckThings
                 TypeId.GrabAgentId => new CTGrabbedAgent(reader),
                 TypeId.SkinId => new CTSkin(reader),
                 TypeId.MoveId => new CTMoveId(reader),
-                _ => new CheckThing(reader),
+                TypeId.BaseIdentifier => new CheckThing(reader),
+                _ => throw new ReadException(reader, $"Could not parse valid {nameof(CheckThing)} type from: {reader.PeekInt()}!"),
             };
         }
 

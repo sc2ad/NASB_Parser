@@ -12,10 +12,8 @@ namespace NASB_Parser.FloatStates
         {
         }
 
-        internal FSSpeed(BulkSerializer reader)
+        internal FSSpeed(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
             SpeedType = (FSSpeedType)reader.ReadInt();
         }
 

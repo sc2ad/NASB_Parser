@@ -15,36 +15,34 @@ namespace NASB_Parser.StateActions
         public CtrlSegCompare SegCompare { get; set; }
         public ValidatorMultiCompare MultiCompare { get; set; }
         public FloatSource FloatContainer { get; set; }
-        public List<InputValidator> Validators { get; }
+        public List<InputValidator> Validators { get; } = new List<InputValidator>();
 
         public InputValidator()
         {
-            Validators = new List<InputValidator>();
         }
 
         public InputValidator(BulkSerializer reader)
         {
             _ = reader.ReadInt();
             InputType = (ValidatorInputType)reader.ReadInt();
-            RawX = reader.ReadInt() > 0;
+            RawX = reader.ReadBool();
             Segment = (CtrlSeg)reader.ReadInt();
             FloatCompare = (ValidatorFloatCompare)reader.ReadInt();
             ButtonCompare = (ValidatorButtonCompare)reader.ReadInt();
             SegCompare = (CtrlSegCompare)reader.ReadInt();
             MultiCompare = (ValidatorMultiCompare)reader.ReadInt();
             FloatContainer = FloatSource.Read(reader);
-            int sz = reader.ReadInt();
-            if (sz < 0)
+            int len = reader.ReadInt();
+            if (len > 0)
             {
-                Validators = new List<InputValidator>();
-            }
-            else
-            {
-                Validators = new List<InputValidator>(sz);
-                for (int i = 0; i < sz; i++)
+                Validators = new List<InputValidator>(len);
+                for (int i = 0; i < len; i++)
                 {
                     Validators.Add(new InputValidator(reader));
                 }
+            } else if (len < -1)
+            {
+                throw new ReadException(reader, $"Cannot create an {nameof(InputValidator)} collection with length: {len}!");
             }
         }
 

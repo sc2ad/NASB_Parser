@@ -17,7 +17,7 @@ namespace NASB_Parser.CheckThings
         internal CTSkin(BulkSerializer reader)
         {
             MatchSkin = reader.ReadString();
-            MatchColor = reader.ReadInt() > 0;
+            MatchColor = reader.ReadBool();
             MatchAgainstColor = reader.ReadInt();
         }
     }

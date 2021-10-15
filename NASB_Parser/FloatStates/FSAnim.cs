@@ -13,10 +13,8 @@ namespace NASB_Parser.FloatStates
         {
         }
 
-        internal FSAnim(BulkSerializer reader)
+        internal FSAnim(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
             Anim = reader.ReadString();
             Attribute = (AnimAttr)reader.ReadInt();
         }

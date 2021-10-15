@@ -6,8 +6,6 @@ namespace NASB_Parser.FloatStates
 {
     public class FloatSource
     {
-        public float Value { get; set; }
-
         public FloatSource()
         {
         }
@@ -16,12 +14,11 @@ namespace NASB_Parser.FloatStates
         {
             _ = reader.ReadInt();
             _ = reader.ReadInt();
-            Value = reader.ReadFloat();
         }
 
         public static FloatSource Read(BulkSerializer reader)
         {
-            return (TypeId)reader.ReadInt() switch
+            return (TypeId)reader.PeekInt() switch
             {
                 TypeId.AgentId => new FSAgent(reader),
                 TypeId.BonesId => new FSBones(reader),
@@ -52,7 +49,8 @@ namespace NASB_Parser.FloatStates
                 TypeId.ModeId => new FSMode(reader),
                 TypeId.JumpsId => new FSJumps(reader),
                 TypeId.RootAnimId => new FSRootAnim(reader),
-                _ => new FloatSource(reader),
+                TypeId.FloatId => new FSValue(reader),
+                _ => throw new ReadException(reader, $"Could not parse valid {nameof(FloatSource)} type from: {reader.PeekInt()}!"),
             };
         }
 

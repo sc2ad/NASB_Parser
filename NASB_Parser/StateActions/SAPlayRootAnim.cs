@@ -20,9 +20,9 @@ namespace NASB_Parser.StateActions
         {
             Anim = reader.ReadString();
             Rate = reader.ReadFloat();
-            SetRateOnly = reader.ReadInt() > 0;
+            SetRateOnly = reader.ReadBool();
             Frame = reader.ReadFloat();
-            SetFrame = reader.ReadInt() > 0;
+            SetFrame = reader.ReadBool();
         }
     }
 }

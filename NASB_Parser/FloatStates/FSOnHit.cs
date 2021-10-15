@@ -12,10 +12,8 @@ namespace NASB_Parser.FloatStates
         {
         }
 
-        internal FSOnHit(BulkSerializer reader)
+        internal FSOnHit(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
             Param = (OnHitParam)reader.ReadInt();
         }
 

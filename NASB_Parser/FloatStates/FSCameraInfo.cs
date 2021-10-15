@@ -12,10 +12,8 @@ namespace NASB_Parser.FloatStates
         {
         }
 
-        internal FSCameraInfo(BulkSerializer reader)
+        internal FSCameraInfo(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
             Attribute = (Attributes)reader.ReadInt();
         }
 

@@ -20,7 +20,7 @@ namespace NASB_Parser.StateActions
         {
             CheckThing = CheckThing.Read(reader);
             Action = Read(reader);
-            Else = reader.ReadInt() > 0;
+            Else = reader.ReadBool();
             ElseAction = Read(reader);
         }
     }

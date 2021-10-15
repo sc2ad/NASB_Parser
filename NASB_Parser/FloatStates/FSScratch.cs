@@ -12,10 +12,8 @@ namespace NASB_Parser.FloatStates
         {
         }
 
-        internal FSScratch(BulkSerializer reader)
+        internal FSScratch(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
             Scratch = reader.ReadInt();
         }
     }

@@ -20,234 +20,85 @@ namespace NASB_Parser.StateActions
 
         public static StateAction Read(BulkSerializer reader)
         {
-            switch ((TypeId)reader.PeekInt())
+            return (TypeId)reader.PeekInt() switch
             {
-                case TypeId.DebugId:
-                    return new SADebugMessage(reader);
-
-                case TypeId.PlayAnimId:
-                    return new SAPlayAnim(reader);
-
-                case TypeId.RootAnimId:
-                    return new SAPlayRootAnim(reader);
-
-                case TypeId.SnapAnimWeightsId:
-                    break;
-
-                case TypeId.StandardInputId:
-                    break;
-
-                case TypeId.InputId:
-                    break;
-
-                case TypeId.DeactInputId:
-                    break;
-
-                case TypeId.InputEventFromFrameId:
-                    break;
-
-                case TypeId.CancelStateId:
-                    break;
-
-                case TypeId.CustomCallId:
-                    break;
-
-                case TypeId.TimerId:
-                    break;
-
-                case TypeId.OrderId:
-                    break;
-
-                case TypeId.ProxyId:
-                    break;
-
-                case TypeId.CheckId:
-                    break;
-
-                case TypeId.ActiveActionId:
-                    break;
-
-                case TypeId.DeactivateActionId:
-                    break;
-
-                case TypeId.SetFloatId:
-                    break;
-
-                case TypeId.OnBounceId:
-                    break;
-
-                case TypeId.OnLeaveEdgeId:
-                    break;
-
-                case TypeId.OnStoppedAtEdgeId:
-                    break;
-
-                case TypeId.OnLandId:
-                    break;
-
-                case TypeId.OnCancelId:
-                    break;
-
-                case TypeId.RefreshAtkId:
-                    break;
-
-                case TypeId.EndAtkId:
-                    break;
-
-                case TypeId.SetHitboxCountId:
-                    break;
-
-                case TypeId.ConfigHitboxId:
-                    break;
-
-                case TypeId.SetAtkPropId:
-                    break;
-
-                case TypeId.ManipHitboxId:
-                    break;
-
-                case TypeId.UpdateHurtsetId:
-                    break;
-
-                case TypeId.SetupHurtsetId:
-                    break;
-
-                case TypeId.ManipHurtboxId:
-                    break;
-
-                case TypeId.BoneStateId:
-                    break;
-
-                case TypeId.BoneScaleId:
-                    break;
-
-                case TypeId.SpawnAgentId:
-                    break;
-
-                case TypeId.LocalFXId:
-                    break;
-
-                case TypeId.SpawnFXId:
-                    break;
-
-                case TypeId.HitboxFXId:
-                    break;
-
-                case TypeId.SFXId:
-                    break;
-
-                case TypeId.HitboxSFXId:
-                    break;
-
-                case TypeId.ColorTintId:
-                    break;
-
-                case TypeId.FindFloorId:
-                    break;
-
-                case TypeId.HurtGrabbedId:
-                    break;
-
-                case TypeId.LaunchGrabbedId:
-                    break;
-
-                case TypeId.StateCancelGrabbedId:
-                    break;
-
-                case TypeId.EndGrabId:
-                    break;
-
-                case TypeId.GrabNotifyEscapeId:
-                    break;
-
-                case TypeId.IgnoreGrabbedId:
-                    break;
-
-                case TypeId.EventKOId:
-                    break;
-
-                case TypeId.EventKOGrabbedId:
-                    break;
-
-                case TypeId.CameraShakeId:
-                    break;
-
-                case TypeId.ResetOnHitId:
-                    break;
-
-                case TypeId.OnHitId:
-                    break;
-
-                case TypeId.FastForwardId:
-                    break;
-
-                case TypeId.TimingTweakId:
-                    break;
-
-                case TypeId.MapAnimId:
-                    break;
-
-                case TypeId.AlterMoveDtId:
-                    break;
-
-                case TypeId.AlterMoveVelId:
-                    break;
-
-                case TypeId.SetStagePartId:
-                    break;
-
-                case TypeId.SetStagePartsDefaultId:
-                    break;
-
-                case TypeId.JumpId:
-                    break;
-
-                case TypeId.StopJumpId:
-                    break;
-
-                case TypeId.ManageAirJumpId:
-                    break;
-
-                case TypeId.LeaveGroundId:
-                    break;
-
-                case TypeId.UnhogEdgeId:
-                    break;
-
-                case TypeId.SFXTimelineId:
-                    break;
-
-                case TypeId.FindLastHorizontalInputId:
-                    break;
-
-                case TypeId.SetCommandGrab:
-                    break;
-
-                case TypeId.CameraPunchId:
-                    break;
-
-                case TypeId.SpawnAgent2Id:
-                    break;
-
-                case TypeId.ManipDecorChainId:
-                    break;
-
-                case TypeId.UpdateHitboxesId:
-                    break;
-
-                case TypeId.SampleAnimId:
-                    break;
-
-                case TypeId.ForceExtraInputId:
-                    break;
-
-                case TypeId.LaunchGrabbedCustomId:
-                    break;
-
-                case TypeId.BaseIdentifier:
-                default:
-                    return new StateAction(reader);
-            }
+                TypeId.DebugId => new SADebugMessage(reader),
+                TypeId.PlayAnimId => new SAPlayAnim(reader),
+                TypeId.RootAnimId => new SAPlayRootAnim(reader),
+                TypeId.SnapAnimWeightsId => new SASnapAnimWeights(reader),
+                TypeId.StandardInputId => new SAStandardInput(reader),
+                TypeId.InputId => new SAInputAction(reader),
+                TypeId.DeactInputId => new SADeactivateInputAction(reader),
+                TypeId.InputEventFromFrameId => new SAAddInputEventFromFrame(reader),
+                TypeId.CancelStateId => new SACancelToState(reader),
+                TypeId.CustomCallId => new SACustomCall(reader),
+                TypeId.TimerId => new SATimedAction(reader),
+                TypeId.OrderId => new SAOrderedSensitive(reader),
+                TypeId.ProxyId => new SAProxyMove(reader),
+                TypeId.CheckId => new SACheckThing(reader),
+                TypeId.ActiveActionId => new SAActiveAction(reader),
+                TypeId.DeactivateActionId => new SADeactivateAction(reader),
+                TypeId.SetFloatId => new SASetFloatTarget(reader),
+                TypeId.OnBounceId => new SAOnBounce(reader),
+                TypeId.OnLeaveEdgeId => new SAOnLeaveEdge(reader),
+                TypeId.OnStoppedAtEdgeId => new SAOnStoppedAtLedge(reader),
+                TypeId.OnLandId => new SAOnLand(reader),
+                TypeId.OnCancelId => new SAOnCancel(reader),
+                TypeId.RefreshAtkId => new SARefreshAttack(reader),
+                TypeId.EndAtkId => new SAEndAttack(reader),
+                TypeId.SetHitboxCountId => new SASetHitboxCount(reader),
+                TypeId.ConfigHitboxId => new SAConfigHitbox(reader),
+                TypeId.SetAtkPropId => new SASetAttackProp(reader),
+                TypeId.ManipHitboxId => new SAManipHitbox(reader),
+                TypeId.UpdateHurtsetId => new SAUpdateHurtboxes(reader),
+                TypeId.SetupHurtsetId => new SASetupHurtboxes(reader),
+                TypeId.ManipHurtboxId => new SAManipHurtbox(reader),
+                TypeId.BoneStateId => new SABoneState(reader),
+                TypeId.BoneScaleId => new SABoneScale(reader),
+                TypeId.SpawnAgentId => new SASpawnAgent(reader),
+                TypeId.LocalFXId => new SALocalFX(reader),
+                TypeId.SpawnFXId => new SASpawnFX(reader),
+                TypeId.HitboxFXId => new SASetHitboxFX(reader),
+                TypeId.SFXId => new SAPlaySFX(reader),
+                TypeId.HitboxSFXId => new SASetHitboxSFX(reader),
+                TypeId.ColorTintId => new SAColorTint(reader),
+                TypeId.FindFloorId => new SAFindFloor(reader),
+                TypeId.HurtGrabbedId => new SAHurtGrabbed(reader),
+                TypeId.LaunchGrabbedId => new SALaunchGrabbed(reader),
+                TypeId.StateCancelGrabbedId => new SAStateCancelGrabbed(reader),
+                TypeId.EndGrabId => new SAEndGrab(reader),
+                TypeId.GrabNotifyEscapeId => new SAGrabNotifyEscape(reader),
+                TypeId.IgnoreGrabbedId => new SAIgnoreGrabbed(reader),
+                TypeId.EventKOId => new SAEventKO(reader),
+                TypeId.EventKOGrabbedId => new SAEventKOGrabbed(reader),
+                TypeId.CameraShakeId => new SACameraShake(reader),
+                TypeId.ResetOnHitId => new SAResetOnHits(reader),
+                TypeId.OnHitId => new SAOnHit(reader),
+                TypeId.FastForwardId => new SAFastForwardState(reader),
+                TypeId.TimingTweakId => new SATimingTweak(reader),
+                TypeId.MapAnimId => new SAMapAnimation(reader),
+                TypeId.AlterMoveDtId => new SAAlterMoveDT(reader),
+                TypeId.AlterMoveVelId => new SAAlterMoveVel(reader),
+                TypeId.SetStagePartId => new SASetStagePart(reader),
+                TypeId.SetStagePartsDefaultId => new SASetStagePartsDefault(reader),
+                TypeId.JumpId => new SAJump(reader),
+                TypeId.StopJumpId => new SAStopJump(reader),
+                TypeId.ManageAirJumpId => new SAManageAirJump(reader),
+                TypeId.LeaveGroundId => new SALeaveGround(reader),
+                TypeId.UnhogEdgeId => new SAUnHogEdge(reader),
+                TypeId.SFXTimelineId => new SAPlaySFXTimeline(reader),
+                TypeId.FindLastHorizontalInputId => new SAFindLastHorizontalInput(reader),
+                TypeId.SetCommandGrab => new SASetCommandGrab(reader),
+                TypeId.CameraPunchId => new SACameraPunch(reader),
+                TypeId.SpawnAgent2Id => new SASpawnAgent2(reader),
+                TypeId.ManipDecorChainId => new SAManipDecorChain(reader),
+                TypeId.UpdateHitboxesId => new SAUpdateHitboxes(reader),
+                TypeId.SampleAnimId => new SASampleAnim(reader),
+                TypeId.ForceExtraInputId => new SAForceExtraInputCheck(reader),
+                TypeId.LaunchGrabbedCustomId => new SALaunchGrabbedCustom(reader),
+                TypeId.BaseIdentifier => new StateAction(reader),
+                _ => throw new ReadException(reader, $"Could not parse valid {nameof(StateAction)} type from: {reader.PeekInt()}!"),
+            };
         }
 
         public enum TypeId

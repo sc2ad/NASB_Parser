@@ -13,12 +13,10 @@ namespace NASB_Parser.FloatStates
         {
         }
 
-        internal FSColors(BulkSerializer reader)
+        internal FSColors(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
             ColorId = reader.ReadString();
-            Permanent = reader.ReadInt() > 0;
+            Permanent = reader.ReadBool();
         }
     }
 }

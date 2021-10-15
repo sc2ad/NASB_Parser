@@ -7,12 +7,11 @@ namespace NASB_Parser
     public class IdState
     {
         public string Id { get; set; }
-        public List<string> Tags { get; }
+        public List<string> Tags { get; } = new List<string>();
         public AgentState State { get; set; }
 
         public IdState()
         {
-            Tags = new List<string>();
         }
 
         internal IdState(BulkSerializer reader)
@@ -20,12 +19,7 @@ namespace NASB_Parser
             // Throwaway unused id
             _ = reader.ReadInt();
             Id = reader.ReadString();
-            int sz = reader.ReadInt();
-            Tags = new List<string>(sz);
-            for (int i = 0; i < sz; i++)
-            {
-                Tags.Add(reader.ReadString());
-            }
+            Tags = reader.ReadList(r => r.ReadString());
             State = AgentState.Read(reader);
         }
     }

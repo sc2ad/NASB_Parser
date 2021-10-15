@@ -13,10 +13,8 @@ namespace NASB_Parser.FloatStates
         {
         }
 
-        internal FSVector2Mag(BulkSerializer reader)
+        internal FSVector2Mag(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
             X = Read(reader);
             Y = Read(reader);
         }

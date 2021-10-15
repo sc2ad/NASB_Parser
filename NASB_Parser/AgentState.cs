@@ -7,11 +7,10 @@ namespace NASB_Parser
     public class AgentState
     {
         public string CustomCall { get; set; }
-        public List<TimedAction> Timeline { get; }
+        public List<TimedAction> Timeline { get; } = new List<TimedAction>();
 
         public AgentState()
         {
-            Timeline = new List<TimedAction>();
         }
 
         internal static AgentState Read(BulkSerializer reader)
@@ -24,14 +23,9 @@ namespace NASB_Parser
 
         private AgentState(BulkSerializer reader)
         {
-            reader.ReadInt();
+            _ = reader.ReadInt();
             CustomCall = reader.ReadString();
-            int cnt = reader.ReadInt();
-            Timeline = new List<TimedAction>(cnt);
-            for (int i = 0; i < cnt; i++)
-            {
-                Timeline.Add(new TimedAction(reader));
-            }
+            Timeline = reader.ReadList(r => new TimedAction(r));
         }
     }
 }

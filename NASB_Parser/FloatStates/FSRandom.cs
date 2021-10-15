@@ -14,11 +14,9 @@ namespace NASB_Parser.FloatStates
         {
         }
 
-        internal FSRandom(BulkSerializer reader)
+        internal FSRandom(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
-            Ratio = reader.ReadInt() > 0;
+            Ratio = reader.ReadBool();
             A = Read(reader);
             B = Read(reader);
         }

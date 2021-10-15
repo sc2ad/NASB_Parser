@@ -12,10 +12,8 @@ namespace NASB_Parser.FloatStates
         {
         }
 
-        internal FSCollision(BulkSerializer reader)
+        internal FSCollision(BulkSerializer reader) : base(reader)
         {
-            _ = reader.ReadInt();
-            _ = reader.ReadInt();
             CollisionAttribute = (CollisionAttributes)reader.ReadInt();
         }
 

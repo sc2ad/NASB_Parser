@@ -17,7 +17,7 @@ namespace NASB_Parser.StateActions
         internal SAStandardInput(BulkSerializer reader) : base(reader)
         {
             Frames = reader.ReadFloat();
-            ForceCheck = reader.ReadInt() > 0;
+            ForceCheck = reader.ReadBool();
             Config = new StandardConfig(reader);
         }
 
