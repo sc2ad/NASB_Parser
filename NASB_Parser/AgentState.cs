@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NASB_Parser
 {
-    public class AgentState
+    public class AgentState : ISerializable
     {
         public string CustomCall { get; set; }
         public List<TimedAction> Timeline { get; } = new List<TimedAction>();
@@ -26,6 +26,13 @@ namespace NASB_Parser
             _ = reader.ReadInt();
             CustomCall = reader.ReadString();
             Timeline = reader.ReadList(r => new TimedAction(r));
+        }
+
+        public void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(0);
+            writer.Write(CustomCall);
+            writer.Write(Timeline);
         }
     }
 }

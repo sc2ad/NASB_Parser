@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NASB_Parser.StateActions
 {
-    public class StateAction
+    public class StateAction : ISerializable
     {
         public TypeId Id { get; }
         public int Version { get; }
@@ -14,11 +14,17 @@ namespace NASB_Parser.StateActions
         {
         }
 
-        internal StateAction(BulkSerializeReader reader)
+        protected StateAction(BulkSerializeReader reader)
         {
             // Reads past two ints
             Id = (TypeId)reader.ReadInt();
             Version = reader.ReadInt();
+        }
+
+        public virtual void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(Id);
+            writer.Write(Version);
         }
 
         public static StateAction Read(BulkSerializeReader reader)

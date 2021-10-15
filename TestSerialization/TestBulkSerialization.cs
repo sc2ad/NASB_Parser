@@ -51,7 +51,7 @@ namespace TestSerialization
             }
             using var stream = new MemoryStream();
             using var innerS = new StreamWriter(stream);
-            writer.Write(innerS);
+            writer.Serialize(innerS);
             innerS.Flush();
             stream.Seek(0, SeekOrigin.Begin);
             var ser2 = new BulkSerializeReader(stream);

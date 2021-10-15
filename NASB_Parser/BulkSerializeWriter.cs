@@ -35,7 +35,80 @@ namespace NASB_Parser
             strings.Add(x);
         }
 
-        public void Write(TextWriter writer)
+        public void Write(int x)
+        {
+            AddInt(x);
+        }
+
+        public void Write(float x)
+        {
+            AddFloat(x);
+        }
+
+        public void Write(string x)
+        {
+            AddString(x);
+        }
+
+        public void Write(bool x)
+        {
+            // Yes, this is how they write bools.
+            AddInt(x ? 7 : 0);
+        }
+
+        public void Write<T>(T ser) where T : class, ISerializable, new()
+        {
+            if (ser is null)
+                ser = new T();
+            ser.Write(this);
+        }
+
+        public void Write<T>(List<T> lst) where T : ISerializable
+        {
+            AddInt(lst.Count);
+            foreach (var item in lst)
+            {
+                item.Write(this);
+            }
+        }
+
+        public void Write(List<int> lst)
+        {
+            AddInt(lst.Count);
+            foreach (var item in lst)
+            {
+                AddInt(item);
+            }
+        }
+
+        public void Write(List<float> lst)
+        {
+            AddInt(lst.Count);
+            foreach (var item in lst)
+            {
+                AddFloat(item);
+            }
+        }
+
+        public void Write(List<string> lst)
+        {
+            AddInt(lst.Count);
+            foreach (var item in lst)
+            {
+                AddString(item);
+            }
+        }
+
+        public void Write(List<bool> lst)
+        {
+            AddInt(lst.Count);
+            foreach (var item in lst)
+            {
+                Write(item);
+            }
+        }
+
+        public void Serialize(TextWriter writer)
         {
             writer.WriteLine(HeaderName);
             writer.WriteLine(HeaderVersion);
@@ -57,7 +130,7 @@ namespace NASB_Parser
                 }
             }
             var stringData = new OrderedDictionary(strings.Count);
-            List<int> stringIdx = new List<int>();
+            List<int> stringIdx = new List<int>(strings.Count);
             idx = 0;
             foreach (var s in strings)
             {

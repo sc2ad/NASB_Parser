@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NASB_Parser
 {
-    public class SerialMoveset
+    public class SerialMoveset : ISerializable
     {
         public List<IdState> States { get; } = new List<IdState>();
 
@@ -13,6 +13,12 @@ namespace NASB_Parser
             reader.Reset();
             _ = reader.ReadInt();
             States = reader.ReadList(r => new IdState(r));
+        }
+
+        public void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(0);
+            writer.Write(States);
         }
     }
 }
