@@ -4,9 +4,9 @@ using System.Text;
 
 namespace NASB_Parser.Jumps
 {
-    public class Jump
+    public class Jump : ISerializable
     {
-        public TypeId Id { get; }
+        public TypeId TID { get; }
         public int Version { get; }
 
         public Jump()
@@ -15,8 +15,14 @@ namespace NASB_Parser.Jumps
 
         internal Jump(BulkSerializeReader reader)
         {
-            Id = (TypeId)reader.ReadInt();
+            TID = (TypeId)reader.ReadInt();
             Version = reader.ReadInt();
+        }
+
+        public virtual void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(TID);
+            writer.Write(Version);
         }
 
         internal static Jump Read(BulkSerializeReader reader)

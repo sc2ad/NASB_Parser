@@ -16,5 +16,11 @@ namespace NASB_Parser.FloatSources
         {
             Scratch = reader.ReadInt();
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Scratch);
+        }
     }
 }

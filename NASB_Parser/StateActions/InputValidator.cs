@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NASB_Parser.StateActions
 {
-    public class InputValidator
+    public class InputValidator : ISerializable
     {
         public ValidatorInputType InputType { get; set; }
         public bool RawX { get; set; }
@@ -44,6 +44,27 @@ namespace NASB_Parser.StateActions
             else if (len < -1)
             {
                 throw new ReadException(reader, $"Cannot create an {nameof(InputValidator)} collection with length: {len}!");
+            }
+        }
+
+        public void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(0);
+            writer.Write(InputType);
+            writer.Write(RawX);
+            writer.Write(Segment);
+            writer.Write(FloatCompare);
+            writer.Write(ButtonCompare);
+            writer.Write(SegCompare);
+            writer.Write(MultiCompare);
+            writer.Write(FloatContainer);
+            if (InputType != ValidatorInputType.MultiValid)
+            {
+                writer.Write(-1);
+            }
+            else
+            {
+                writer.Write(Validators);
             }
         }
 

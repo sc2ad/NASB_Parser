@@ -16,5 +16,11 @@ namespace NASB_Parser.StateActions
         {
             HurtSetSetup = new HurtSetSetup(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(HurtSetSetup);
+        }
     }
 }

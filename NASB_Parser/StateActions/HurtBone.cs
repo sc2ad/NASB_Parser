@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NASB_Parser.StateActions
 {
-    public class HurtBone
+    public class HurtBone : ISerializable
     {
         public HurtType Type { get; set; }
         public int Armor { get; set; }
@@ -39,6 +39,22 @@ namespace NASB_Parser.StateActions
             WorldOffsetA = reader.ReadVector3();
             LocalOffsetB = reader.ReadVector3();
             WorldOffsetB = reader.ReadVector3();
+        }
+
+        public void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(1);
+            writer.Write(Type);
+            writer.Write(Armor);
+            writer.Write(KnockbackArmor);
+            writer.Write(ForceZ0);
+            writer.Write(BoneA);
+            writer.Write(BoneB);
+            writer.Write(Radius);
+            writer.Write(LocalOffsetA);
+            writer.Write(WorldOffsetA);
+            writer.Write(LocalOffsetB);
+            writer.Write(WorldOffsetB);
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NASB_Parser.StateActions
 {
-    public class SpawnMovement
+    public class SpawnMovement : ISerializable
     {
         public string ToBone { get; set; }
         public Vector3 LocalOffset { get; set; }
@@ -22,6 +22,15 @@ namespace NASB_Parser.StateActions
             LocalOffset = reader.ReadVector3();
             WorldOffset = reader.ReadVector3();
             Config = new MovementConfig(reader);
+        }
+
+        public void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(0);
+            writer.Write(ToBone);
+            writer.Write(LocalOffset);
+            writer.Write(WorldOffset);
+            writer.Write(Config);
         }
     }
 }

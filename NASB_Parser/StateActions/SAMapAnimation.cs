@@ -18,7 +18,13 @@ namespace NASB_Parser.StateActions
             Map = reader.ReadList(r => new MapPoint(r));
         }
 
-        public class MapPoint
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Map);
+        }
+
+        public class MapPoint : ISerializable
         {
             public bool RootAnim { get; set; }
             public string AnimId { get; set; }
@@ -40,6 +46,17 @@ namespace NASB_Parser.StateActions
                 Frames = FloatSource.Read(reader);
                 StartAnimFrame = FloatSource.Read(reader);
                 EndAnimFrame = FloatSource.Read(reader);
+            }
+
+            public void Write(BulkSerializeWriter writer)
+            {
+                writer.Write(0);
+                writer.Write(RootAnim);
+                writer.Write(AnimId);
+                writer.Write(AtFrames);
+                writer.Write(Frames);
+                writer.Write(StartAnimFrame);
+                writer.Write(EndAnimFrame);
             }
         }
     }

@@ -6,7 +6,7 @@ namespace NASB_Parser.FloatSources
 {
     public class FSCollision : FloatSource
     {
-        public CollisionAttributes CollisionAttribute { get; set; }
+        public CollisionAttributes Attribute { get; set; }
 
         public FSCollision()
         {
@@ -14,7 +14,13 @@ namespace NASB_Parser.FloatSources
 
         internal FSCollision(BulkSerializeReader reader) : base(reader)
         {
-            CollisionAttribute = (CollisionAttributes)reader.ReadInt();
+            Attribute = (CollisionAttributes)reader.ReadInt();
+        }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Attribute);
         }
 
         public enum CollisionAttributes

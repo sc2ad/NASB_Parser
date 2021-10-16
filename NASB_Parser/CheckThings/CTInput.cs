@@ -21,5 +21,13 @@ namespace NASB_Parser.CheckThings
             Frames = reader.ReadInt();
             BlockedBy = (GIEV)reader.ReadInt();
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(InputValidator);
+            writer.Write(Frames);
+            writer.Write(BlockedBy);
+        }
     }
 }

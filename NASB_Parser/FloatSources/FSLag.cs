@@ -19,6 +19,13 @@ namespace NASB_Parser.FloatSources
             ManipLag = (ManipLags)reader.ReadInt();
         }
 
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(LagType);
+            writer.Write(ManipLag);
+        }
+
         public enum LagTypes
         {
             StateLag,

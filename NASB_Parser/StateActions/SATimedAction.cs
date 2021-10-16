@@ -21,5 +21,13 @@ namespace NASB_Parser.StateActions
             Repeat = reader.ReadBool();
             Action = Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Source);
+            writer.Write(Repeat);
+            writer.Write(Action);
+        }
     }
 }

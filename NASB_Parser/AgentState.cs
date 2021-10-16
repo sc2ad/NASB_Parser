@@ -31,6 +31,7 @@ namespace NASB_Parser
         public void Write(BulkSerializeWriter writer)
         {
             writer.Write(0);
+            writer.Write(0);
             writer.Write(CustomCall);
             writer.Write(Timeline);
         }

@@ -73,7 +73,40 @@ namespace NASB_Parser.StateActions
             }
         }
 
-        public struct AddedSpawnData
+        public override void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(TID);
+            writer.Write(2);
+            writer.Write(Bank);
+            writer.Write(Id);
+            writer.Write(Bone);
+            writer.Write(LocalOffset);
+            writer.Write(WorldOffset);
+            writer.Write(CustomSpawnMovement);
+            writer.Write(Movements);
+            writer.Write(SpawnedAgentDataId);
+            writer.Write(SpawnedAgentDataSetValue);
+            writer.Write(ResultOrderAdded);
+            byte b = 0;
+            b = BitUtil.SetBit(b, 0, SetPlayerIndex);
+            b = BitUtil.SetBit(b, 1, SetAttackTeam);
+            b = BitUtil.SetBit(b, 2, SetDefendTeam);
+            b = BitUtil.SetBit(b, 3, SetProjectileLevel);
+            b = BitUtil.SetBit(b, 4, SetDirection);
+            b = BitUtil.SetBit(b, 5, SetRedirect);
+            writer.Write(b);
+            writer.Write(PlayerIndex);
+            writer.Write(AttackTeam);
+            writer.Write(DefendTeam);
+            writer.Write(ProjectileLevel);
+            writer.Write(Direction);
+            writer.Write(RedirectX);
+            writer.Write(RedirectY);
+            writer.Write(ExactSpawn);
+            writer.Write(AddedSpawns);
+        }
+
+        public struct AddedSpawnData : ISerializable
         {
             public string SpawnedAgentDataId { get; set; }
             public FloatSource SpawnedAgentDataSetValue { get; set; }
@@ -82,6 +115,12 @@ namespace NASB_Parser.StateActions
             {
                 SpawnedAgentDataId = reader.ReadString();
                 SpawnedAgentDataSetValue = FloatSource.Read(reader);
+            }
+
+            public void Write(BulkSerializeWriter writer)
+            {
+                writer.Write(SpawnedAgentDataId);
+                writer.Write(SpawnedAgentDataSetValue);
             }
         }
 
@@ -102,6 +141,15 @@ namespace NASB_Parser.StateActions
             internal static bool GetBit(byte b, int bit)
             {
                 return (b & ors[bit]) > 0;
+            }
+
+            internal static byte SetBit(byte b, int bit, bool val)
+            {
+                if (val)
+                {
+                    return (byte)(b | ors[bit]);
+                }
+                return (byte)(b & (255u ^ ors[bit]));
             }
         }
     }

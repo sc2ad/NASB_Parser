@@ -20,5 +20,13 @@ namespace NASB_Parser.StateActions
             Anim = reader.ReadString();
             Cfg = new AnimConfig(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(FromStart);
+            writer.Write(Anim);
+            writer.Write(Cfg);
+        }
     }
 }

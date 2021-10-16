@@ -4,9 +4,9 @@ using System.Text;
 
 namespace NASB_Parser.CheckThings
 {
-    public class CheckThing
+    public class CheckThing : ISerializable
     {
-        public TypeId Id { get; }
+        public TypeId TID { get; }
         public int Version { get; }
 
         public CheckThing()
@@ -15,8 +15,14 @@ namespace NASB_Parser.CheckThings
 
         internal CheckThing(BulkSerializeReader reader)
         {
-            Id = (TypeId)reader.ReadInt();
+            TID = (TypeId)reader.ReadInt();
             Version = reader.ReadInt();
+        }
+
+        public virtual void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(TID);
+            writer.Write(Version);
         }
 
         public static CheckThing Read(BulkSerializeReader reader)

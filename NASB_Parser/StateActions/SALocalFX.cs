@@ -19,6 +19,13 @@ namespace NASB_Parser.StateActions
             Id = reader.ReadString();
         }
 
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(ActionType);
+            writer.Write(Id);
+        }
+
         public enum LocalFXAction
         {
             TurnOn,

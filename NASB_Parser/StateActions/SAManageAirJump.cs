@@ -17,6 +17,12 @@ namespace NASB_Parser.StateActions
             Manage = (ManageType)reader.ReadInt();
         }
 
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Manage);
+        }
+
         public enum ManageType
         {
             ExpendAirJump,

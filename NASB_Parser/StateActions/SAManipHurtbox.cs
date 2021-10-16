@@ -18,6 +18,12 @@ namespace NASB_Parser.StateActions
             Manips = reader.ReadList(r => new HBM(r));
         }
 
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Manips);
+        }
+
         public enum Manip
         {
             Radius,
@@ -38,7 +44,7 @@ namespace NASB_Parser.StateActions
             LocalOffsetZ2nd
         }
 
-        public class HBM
+        public class HBM : ISerializable
         {
             public Manip Manip { get; set; }
             public int Hurtbox { get; set; }
@@ -56,6 +62,15 @@ namespace NASB_Parser.StateActions
                 Hurtbox = reader.ReadInt();
                 Type = (HurtType)reader.ReadInt();
                 Source = FloatSource.Read(reader);
+            }
+
+            public void Write(BulkSerializeWriter writer)
+            {
+                writer.Write(0);
+                writer.Write(Manip);
+                writer.Write(Hurtbox);
+                writer.Write(Type);
+                writer.Write(Source);
             }
         }
     }

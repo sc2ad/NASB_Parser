@@ -36,5 +36,20 @@ namespace NASB_Parser.StateActions
                 ResultOrderAdded = FloatSource.Read(reader);
             }
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(TID);
+            writer.Write(1);
+            writer.Write(Bank);
+            writer.Write(Id);
+            writer.Write(Bone);
+            writer.Write(LocalOffset);
+            writer.Write(WorldOffset);
+            writer.Write(MessageObject);
+            writer.Write(CustomSpawnMovement);
+            writer.Write(Movements);
+            writer.Write(ResultOrderAdded);
+        }
     }
 }

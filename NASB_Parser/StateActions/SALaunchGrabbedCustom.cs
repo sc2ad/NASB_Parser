@@ -21,5 +21,13 @@ namespace NASB_Parser.StateActions
             X = FloatSource.Read(reader);
             Y = FloatSource.Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(AtkProp);
+            writer.Write(X);
+            writer.Write(Y);
+        }
     }
 }

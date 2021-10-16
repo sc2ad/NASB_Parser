@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NASB_Parser.StateActions
 {
-    public class InputTrigger
+    public class InputTrigger : ISerializable
     {
         public int SniffFrames { get; set; }
         public GIEV BlockedByEvent { get; set; }
@@ -18,12 +18,22 @@ namespace NASB_Parser.StateActions
 
         public InputTrigger(BulkSerializeReader reader)
         {
-            reader.ReadInt();
+            _ = reader.ReadInt();
             SniffFrames = reader.ReadInt();
             BlockedByEvent = (GIEV)reader.ReadInt();
             AddEventOnTrigger = (GIEV)reader.ReadInt();
             Action = StateAction.Read(reader);
             Validator = new InputValidator(reader);
+        }
+
+        public void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(0);
+            writer.Write(SniffFrames);
+            writer.Write(BlockedByEvent);
+            writer.Write(AddEventOnTrigger);
+            writer.Write(Action);
+            writer.Write(Validator);
         }
     }
 }

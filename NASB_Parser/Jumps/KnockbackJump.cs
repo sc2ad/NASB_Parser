@@ -29,5 +29,17 @@ namespace NASB_Parser.Jumps
             DiAngleIn = FloatSource.Read(reader);
             DiAngleOut = FloatSource.Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(XDir);
+            writer.Write(YDir);
+            writer.Write(LaunchDist);
+            writer.Write(Frames);
+            writer.Write(DiType);
+            writer.Write(DiAngleIn);
+            writer.Write(DiAngleOut);
+        }
     }
 }

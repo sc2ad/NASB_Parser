@@ -17,6 +17,12 @@ namespace NASB_Parser.FloatSources
             Input = (CheckInput)reader.ReadInt();
         }
 
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Input);
+        }
+
         public enum CheckInput
         {
             CtrlX,

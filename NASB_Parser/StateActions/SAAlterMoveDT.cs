@@ -21,5 +21,13 @@ namespace NASB_Parser.StateActions
             After = FloatSource.Read(reader);
             Falloff = FloatSource.Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(ClearAMDT);
+            writer.Write(After);
+            writer.Write(Falloff);
+        }
     }
 }

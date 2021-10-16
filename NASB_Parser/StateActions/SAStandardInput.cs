@@ -21,7 +21,15 @@ namespace NASB_Parser.StateActions
             Config = new StandardConfig(reader);
         }
 
-        public class StandardConfig
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Frames);
+            writer.Write(ForceCheck);
+            writer.Write(Config);
+        }
+
+        public class StandardConfig : ISerializable
         {
             public byte DontCheck0 { get; set; }
             public byte DontCheck1 { get; set; }
@@ -39,6 +47,15 @@ namespace NASB_Parser.StateActions
                 DontCheck1 = (byte)reader.ReadInt();
                 DontCheck2 = (byte)reader.ReadInt();
                 DontCheck3 = (byte)reader.ReadInt();
+            }
+
+            public void Write(BulkSerializeWriter writer)
+            {
+                writer.Write(0);
+                writer.Write(DontCheck0);
+                writer.Write(DontCheck1);
+                writer.Write(DontCheck2);
+                writer.Write(DontCheck3);
             }
         }
     }

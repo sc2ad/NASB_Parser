@@ -18,5 +18,12 @@ namespace NASB_Parser.StateActions
             State = reader.ReadBool();
             Bone = reader.ReadString();
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(State);
+            writer.Write(Bone);
+        }
     }
 }

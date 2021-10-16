@@ -16,6 +16,12 @@ namespace NASB_Parser.FloatSources
             Attribute = (Attributes)reader.ReadInt();
         }
 
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Attribute);
+        }
+
         public enum Attributes
         {
             RotationAngle,

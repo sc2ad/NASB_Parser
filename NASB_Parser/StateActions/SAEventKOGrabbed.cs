@@ -17,5 +17,11 @@ namespace NASB_Parser.StateActions
         {
             KO = (KOType)reader.ReadInt();
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(KO);
+        }
     }
 }

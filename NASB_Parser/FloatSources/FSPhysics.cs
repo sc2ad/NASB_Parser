@@ -6,7 +6,7 @@ namespace NASB_Parser.FloatSources
 {
     public class FSPhysics : FloatSource
     {
-        public PhysicsAttributes PhysicsAttribute { get; set; }
+        public PhysicsAttributes Attribute { get; set; }
 
         public FSPhysics()
         {
@@ -14,7 +14,13 @@ namespace NASB_Parser.FloatSources
 
         internal FSPhysics(BulkSerializeReader reader) : base(reader)
         {
-            PhysicsAttribute = (PhysicsAttributes)reader.ReadInt();
+            Attribute = (PhysicsAttributes)reader.ReadInt();
+        }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Attribute);
         }
 
         public enum PhysicsAttributes

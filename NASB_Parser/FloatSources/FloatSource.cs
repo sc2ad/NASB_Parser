@@ -5,9 +5,9 @@ using System.Text;
 
 namespace NASB_Parser.FloatSources
 {
-    public abstract class FloatSource
+    public abstract class FloatSource : ISerializable
     {
-        public TypeId Id { get; }
+        public TypeId TID { get; }
         public int Version { get; }
 
         public FloatSource()
@@ -16,8 +16,14 @@ namespace NASB_Parser.FloatSources
 
         internal FloatSource(BulkSerializeReader reader)
         {
-            Id = (TypeId)reader.ReadInt();
+            TID = (TypeId)reader.ReadInt();
             Version = reader.ReadInt();
+        }
+
+        public virtual void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(TID);
+            writer.Write(Version);
         }
 
         public static FloatSource Read(BulkSerializeReader reader)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NASB_Parser.FloatSources;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
@@ -15,6 +16,10 @@ namespace NASB_Parser
 
         public const string HeaderName = "BulkSerialize";
         public const string HeaderVersion = "VERSION_0";
+
+        public int IntCount => ints.Count;
+        public int FloatCount => floats.Count;
+        public int StringCount => strings.Count;
 
         public BulkSerializeWriter()
         {
@@ -56,11 +61,18 @@ namespace NASB_Parser
             AddInt(x ? 7 : 0);
         }
 
-        public void Write<T>(T ser) where T : class, ISerializable, new()
+        public void Write<T>(T ser) where T : ISerializable, new()
         {
             if (ser is null)
                 ser = new T();
             ser.Write(this);
+        }
+
+        public void Write(FloatSource source)
+        {
+            if (source is null)
+                source = new FSValue();
+            source.Write(this);
         }
 
         public void Write<T>(List<T> lst) where T : ISerializable

@@ -43,5 +43,24 @@ namespace NASB_Parser.StateActions
             DynamicZ = FloatSource.Read(reader);
             Scale = FloatSource.Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Dynamic);
+            writer.Write(Track);
+            writer.Write(BoneDir);
+            writer.Write(Id);
+            writer.Write(Bone);
+            writer.Write(LocalOffset);
+            writer.Write(GlobalOffset);
+            writer.Write(DirX);
+            writer.Write(DirY);
+            writer.Write(DirZ);
+            writer.Write(DynamicX);
+            writer.Write(DynamicY);
+            writer.Write(DynamicZ);
+            writer.Write(Scale);
+        }
     }
 }

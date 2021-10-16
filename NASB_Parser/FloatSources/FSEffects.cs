@@ -18,12 +18,16 @@ namespace NASB_Parser.FloatSources
             LocalFxId = reader.ReadString();
         }
 
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(LocalFxId);
+        }
+
         public enum ManipAspect
         {
             TimeElapsed,
-
             Length,
-
             AddToElapsed
         }
     }

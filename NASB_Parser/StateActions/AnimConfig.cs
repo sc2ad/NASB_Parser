@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NASB_Parser.StateActions
 {
-    public struct AnimConfig
+    public struct AnimConfig : ISerializable
     {
         public float Rate { get; set; }
         public float Weight { get; set; }
@@ -18,6 +18,15 @@ namespace NASB_Parser.StateActions
             Weight = reader.ReadFloat();
             Wrap = (WrapMode)reader.ReadInt();
             ClingToFrames = reader.ReadBool();
+        }
+
+        public void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(0);
+            writer.Write(Rate);
+            writer.Write(Weight);
+            writer.Write(Wrap);
+            writer.Write(ClingToFrames);
         }
 
         public enum WrapMode

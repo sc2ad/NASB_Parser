@@ -16,5 +16,11 @@ namespace NASB_Parser.CheckThings
         {
             MatchTags = reader.ReadList(r => r.ReadString());
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(MatchTags);
+        }
     }
 }

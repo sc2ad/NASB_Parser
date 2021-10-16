@@ -5,7 +5,7 @@ using NASB_Parser.ObjectSources;
 
 namespace NASB_Parser.StateActions
 {
-    public class SAGUAMessageObject
+    public class SAGUAMessageObject : ISerializable
     {
         public string PlainMessage { get; set; }
         public List<MessageDynamic> Dynamics { get; } = new List<MessageDynamic>();
@@ -16,11 +16,19 @@ namespace NASB_Parser.StateActions
 
         internal SAGUAMessageObject(BulkSerializeReader reader)
         {
+            _ = reader.ReadInt();
             PlainMessage = reader.ReadString();
             Dynamics = reader.ReadList(r => new MessageDynamic(r));
         }
 
-        public class MessageDynamic
+        public void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(0);
+            writer.Write(PlainMessage);
+            writer.Write(Dynamics);
+        }
+
+        public class MessageDynamic : ISerializable
         {
             public string Id { get; set; }
             public ObjectSource ObjectSource { get; set; }
@@ -34,6 +42,13 @@ namespace NASB_Parser.StateActions
                 _ = reader.ReadInt();
                 Id = reader.ReadString();
                 ObjectSource = ObjectSource.Read(reader);
+            }
+
+            public void Write(BulkSerializeWriter writer)
+            {
+                writer.Write(0);
+                writer.Write(Id);
+                writer.Write(ObjectSource);
             }
         }
     }

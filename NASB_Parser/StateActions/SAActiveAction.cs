@@ -24,6 +24,15 @@ namespace NASB_Parser.StateActions
             Phase = (Phases)reader.ReadInt();
         }
 
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Action);
+            writer.Write(FloatSource);
+            writer.Write(Id);
+            writer.Write(Phase);
+        }
+
         public enum Phases
         {
             PreInputTrigger,

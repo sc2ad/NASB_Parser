@@ -4,9 +4,9 @@ using System.Text;
 
 namespace NASB_Parser.ObjectSources
 {
-    public class ObjectSource
+    public class ObjectSource : ISerializable
     {
-        public TypeId Id { get; }
+        public TypeId TID { get; }
         public int Version { get; }
 
         public ObjectSource()
@@ -15,8 +15,14 @@ namespace NASB_Parser.ObjectSources
 
         internal ObjectSource(BulkSerializeReader reader)
         {
-            Id = (TypeId)reader.ReadInt();
+            TID = (TypeId)reader.ReadInt();
             Version = reader.ReadInt();
+        }
+
+        public virtual void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(TID);
+            writer.Write(Version);
         }
 
         public static ObjectSource Read(BulkSerializeReader reader)

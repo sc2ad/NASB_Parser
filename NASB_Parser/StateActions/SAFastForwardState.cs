@@ -17,5 +17,11 @@ namespace NASB_Parser.StateActions
         {
             Frames = FloatSource.Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Frames);
+        }
     }
 }

@@ -35,5 +35,20 @@ namespace NASB_Parser.StateActions
             ActionB = Read(reader);
             ActionEnd = Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(AnimId);
+            writer.Write(RootAnimId);
+            writer.Write(AnimCfg);
+            writer.Write(AnimFrames);
+            writer.Write(StateFrames);
+            writer.Write(FramesToA);
+            writer.Write(FramesToB);
+            writer.Write(ActionA);
+            writer.Write(ActionB);
+            writer.Write(ActionEnd);
+        }
     }
 }

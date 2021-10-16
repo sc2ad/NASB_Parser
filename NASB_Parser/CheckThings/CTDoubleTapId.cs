@@ -19,6 +19,13 @@ namespace NASB_Parser.CheckThings
             Window = reader.ReadInt();
         }
 
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(TapDir);
+            writer.Write(Window);
+        }
+
         public enum SimpleControlDir
         {
             Neutral,

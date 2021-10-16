@@ -19,6 +19,13 @@ namespace NASB_Parser.StateActions
             ResultInScratch = reader.ReadInt();
         }
 
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Search);
+            writer.Write(ResultInScratch);
+        }
+
         public enum SearchType
         {
             None,

@@ -21,5 +21,13 @@ namespace NASB_Parser.StateActions
                 Intensity = reader.ReadFloat();
             }
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(TID);
+            writer.Write(1);
+            writer.Write(Shake);
+            writer.Write(Intensity);
+        }
     }
 }

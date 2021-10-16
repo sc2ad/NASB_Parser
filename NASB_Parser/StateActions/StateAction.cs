@@ -7,7 +7,7 @@ namespace NASB_Parser.StateActions
 {
     public class StateAction : ISerializable
     {
-        public TypeId Id { get; }
+        public TypeId TID { get; }
         public int Version { get; }
 
         public StateAction()
@@ -17,13 +17,13 @@ namespace NASB_Parser.StateActions
         protected StateAction(BulkSerializeReader reader)
         {
             // Reads past two ints
-            Id = (TypeId)reader.ReadInt();
+            TID = (TypeId)reader.ReadInt();
             Version = reader.ReadInt();
         }
 
         public virtual void Write(BulkSerializeWriter writer)
         {
-            writer.Write(Id);
+            writer.Write(TID);
             writer.Write(Version);
         }
 

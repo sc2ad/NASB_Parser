@@ -16,5 +16,11 @@ namespace NASB_Parser.StateActions
         {
             SeekRange = reader.ReadFloat();
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(SeekRange);
+        }
     }
 }

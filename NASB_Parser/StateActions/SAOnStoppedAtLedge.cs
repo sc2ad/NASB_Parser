@@ -16,5 +16,11 @@ namespace NASB_Parser.StateActions
         {
             Action = Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Action);
+        }
     }
 }

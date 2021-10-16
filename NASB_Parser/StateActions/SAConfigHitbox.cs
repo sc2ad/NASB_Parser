@@ -46,5 +46,27 @@ namespace NASB_Parser.StateActions
                 }
             }
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(TID);
+            writer.Write(1);
+            writer.Write(Hitbox);
+            writer.Write(ForceZ0);
+            writer.Write(Radius);
+            writer.Write(LocalOffset);
+            writer.Write(WorldOffset);
+            writer.Write(Prop);
+            writer.Write(Bone);
+            writer.Write(FxId);
+            writer.Write(SfxId);
+            writer.Write(SecondTrack);
+            if (SecondTrack)
+            {
+                writer.Write(Bone2);
+                writer.Write(LocalOffset2);
+                writer.Write(WorldOffset2);
+            }
+        }
     }
 }

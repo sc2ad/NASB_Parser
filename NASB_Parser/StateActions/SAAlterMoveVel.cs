@@ -25,5 +25,15 @@ namespace NASB_Parser.StateActions
             FalloffX = FloatSource.Read(reader);
             FalloffY = FloatSource.Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(ClearAMV);
+            writer.Write(AlterX);
+            writer.Write(AlterY);
+            writer.Write(FalloffX);
+            writer.Write(FalloffY);
+        }
     }
 }

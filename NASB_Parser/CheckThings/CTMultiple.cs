@@ -19,6 +19,13 @@ namespace NASB_Parser.CheckThings
             Checklist = reader.ReadList(r => Read(r));
         }
 
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Match);
+            writer.Write(Checklist);
+        }
+
         public enum CheckMatch
         {
             Any,

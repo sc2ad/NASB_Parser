@@ -23,5 +23,14 @@ namespace NASB_Parser.StateActions
             Permanent = reader.ReadBool();
             RunForTime = FloatSource.Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Id);
+            writer.Write(Activate);
+            writer.Write(Permanent);
+            writer.Write(RunForTime);
+        }
     }
 }

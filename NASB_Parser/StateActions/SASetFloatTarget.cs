@@ -18,7 +18,13 @@ namespace NASB_Parser.StateActions
             Sets = reader.ReadList(r => new SetFloat(r));
         }
 
-        public class SetFloat
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Sets);
+        }
+
+        public class SetFloat : ISerializable
         {
             public FloatSource Target { get; set; }
             public FloatSource Source { get; set; }
@@ -34,6 +40,14 @@ namespace NASB_Parser.StateActions
                 Target = FloatSource.Read(reader);
                 Source = FloatSource.Read(reader);
                 Way = (ManipWay)reader.ReadInt();
+            }
+
+            public void Write(BulkSerializeWriter writer)
+            {
+                writer.Write(0);
+                writer.Write(Target);
+                writer.Write(Source);
+                writer.Write(Way);
             }
 
             public enum ManipWay

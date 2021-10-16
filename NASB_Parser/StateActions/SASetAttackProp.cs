@@ -18,5 +18,12 @@ namespace NASB_Parser.StateActions
             Hitbox = reader.ReadInt();
             Prop = reader.ReadString();
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Hitbox);
+            writer.Write(Prop);
+        }
     }
 }

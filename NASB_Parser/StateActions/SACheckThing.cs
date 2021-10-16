@@ -23,5 +23,14 @@ namespace NASB_Parser.StateActions
             Else = reader.ReadBool();
             ElseAction = Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(CheckThing);
+            writer.Write(Action);
+            writer.Write(Else);
+            writer.Write(ElseAction);
+        }
     }
 }

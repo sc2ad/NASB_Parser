@@ -18,5 +18,12 @@ namespace NASB_Parser.FloatSources
             X = Read(reader);
             Y = Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(X);
+            writer.Write(Y);
+        }
     }
 }

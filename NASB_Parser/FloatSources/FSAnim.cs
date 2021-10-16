@@ -20,6 +20,13 @@ namespace NASB_Parser.FloatStates
             Attribute = (AnimAttr)reader.ReadInt();
         }
 
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Anim);
+            writer.Write(Attribute);
+        }
+
         public enum AnimAttr
         {
             Rate,

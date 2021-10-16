@@ -18,5 +18,12 @@ namespace NASB_Parser.StateActions
             StopAll = reader.ReadBool();
             JumpId = reader.ReadString();
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(StopAll);
+            writer.Write(JumpId);
+        }
     }
 }

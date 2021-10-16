@@ -36,5 +36,20 @@ namespace NASB_Parser.Jumps
             Frames = FloatSource.Read(reader);
             RedirectFrames = FloatSource.Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(TID);
+            writer.Write(1);
+            writer.Write(EaseSpeed);
+            writer.Write(XDir);
+            writer.Write(YDir);
+            writer.Write(SpeedStart);
+            writer.Write(SpeedEnd);
+            writer.Write(SpeedUpMult);
+            writer.Write(SpeedDownMult);
+            writer.Write(Frames);
+            writer.Write(RedirectFrames);
+        }
     }
 }

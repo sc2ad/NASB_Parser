@@ -19,5 +19,12 @@ namespace NASB_Parser.StateActions
             Bone = reader.ReadString();
             Source = FloatSource.Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Bone);
+            writer.Write(Source);
+        }
     }
 }

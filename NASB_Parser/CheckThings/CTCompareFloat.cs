@@ -21,5 +21,13 @@ namespace NASB_Parser.CheckThings
             A = FloatSource.Read(reader);
             B = FloatSource.Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Way);
+            writer.Write(A);
+            writer.Write(B);
+        }
     }
 }

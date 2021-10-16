@@ -20,5 +20,13 @@ namespace NASB_Parser.CheckThings
             InputSeries = reader.ReadList(r => new LookForInput(r));
             StopLooking = reader.ReadList(r => new LookForInput(r));
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(CheckFrames);
+            writer.Write(InputSeries);
+            writer.Write(StopLooking);
+        }
     }
 }

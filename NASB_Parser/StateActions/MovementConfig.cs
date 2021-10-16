@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NASB_Parser.StateActions
 {
-    public class MovementConfig
+    public class MovementConfig : ISerializable
     {
         public bool GetParented { get; set; }
         public bool LeaveEdges { get; set; }
@@ -43,6 +43,24 @@ namespace NASB_Parser.StateActions
                 SimpleFreeMovement = reader.ReadBool();
                 SimpleRadius = reader.ReadFloat();
             }
+        }
+
+        public void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(1);
+            writer.Write(GetParented);
+            writer.Write(LeaveEdges);
+            writer.Write(PassThrough);
+            writer.Write(FallThrough);
+            writer.Write(IgnoreMovingStage);
+            writer.Write(Bounce);
+            writer.Write(Stop);
+            writer.Write(LeaveParent);
+            writer.Write(IgnoreStageLayer);
+            writer.Write(InheritParentVel);
+            writer.Write(LeaveEdgeRestrict);
+            writer.Write(SimpleFreeMovement);
+            writer.Write(SimpleRadius);
         }
 
         public enum StageLayer

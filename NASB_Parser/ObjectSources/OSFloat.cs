@@ -17,5 +17,11 @@ namespace NASB_Parser.ObjectSources
         {
             Source = FloatSource.Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Source);
+        }
     }
 }

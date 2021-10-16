@@ -23,6 +23,15 @@ namespace NASB_Parser.FloatSources
             ContainerC = Read(reader);
         }
 
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Way);
+            writer.Write(ContainerA);
+            writer.Write(ContainerB);
+            writer.Write(ContainerC);
+        }
+
         public enum FuncWay
         {
             Abs,

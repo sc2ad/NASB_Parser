@@ -18,5 +18,12 @@ namespace NASB_Parser.StateActions
             SetTo = reader.ReadBool();
             PartId = reader.ReadString();
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(SetTo);
+            writer.Write(PartId);
+        }
     }
 }

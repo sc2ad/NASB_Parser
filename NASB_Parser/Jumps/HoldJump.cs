@@ -21,5 +21,13 @@ namespace NASB_Parser.Jumps
             AutoHoldFrames = FloatSource.Read(reader);
             YVelMaxOnRelease = FloatSource.Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Height);
+            writer.Write(AutoHoldFrames);
+            writer.Write(YVelMaxOnRelease);
+        }
     }
 }

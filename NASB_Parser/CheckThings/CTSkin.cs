@@ -20,5 +20,13 @@ namespace NASB_Parser.CheckThings
             MatchColor = reader.ReadBool();
             MatchAgainstColor = reader.ReadInt();
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(MatchSkin);
+            writer.Write(MatchColor);
+            writer.Write(MatchAgainstColor);
+        }
     }
 }

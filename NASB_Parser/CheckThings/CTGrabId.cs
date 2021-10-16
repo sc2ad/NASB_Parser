@@ -17,6 +17,12 @@ namespace NASB_Parser.CheckThings
             CheckType = (CheckTypes)reader.ReadInt();
         }
 
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(CheckType);
+        }
+
         public enum CheckTypes
         {
             InGrab,

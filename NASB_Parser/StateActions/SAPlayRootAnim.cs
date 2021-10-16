@@ -24,5 +24,15 @@ namespace NASB_Parser.StateActions
             Frame = reader.ReadFloat();
             SetFrame = reader.ReadBool();
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Anim);
+            writer.Write(Rate);
+            writer.Write(SetRateOnly);
+            writer.Write(Frame);
+            writer.Write(SetFrame);
+        }
     }
 }

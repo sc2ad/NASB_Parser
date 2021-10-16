@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NASB_Parser.StateActions
 {
-    public class HurtSetSetup
+    public class HurtSetSetup : ISerializable
     {
         public List<HurtBone> HurtBones { get; } = new List<HurtBone>();
 
@@ -16,6 +16,12 @@ namespace NASB_Parser.StateActions
         {
             _ = reader.ReadInt();
             HurtBones = reader.ReadList(r => new HurtBone(r));
+        }
+
+        public void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(0);
+            writer.Write(HurtBones);
         }
     }
 }

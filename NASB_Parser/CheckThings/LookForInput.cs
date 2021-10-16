@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NASB_Parser.CheckThings
 {
-    public class LookForInput
+    public class LookForInput : ISerializable
     {
         public int MatchMinFrames { get; set; }
         public InputValidator InputValidator { get; set; }
@@ -19,6 +19,13 @@ namespace NASB_Parser.CheckThings
             _ = reader.ReadInt();
             MatchMinFrames = reader.ReadInt();
             InputValidator = new InputValidator(reader);
+        }
+
+        public void Write(BulkSerializeWriter writer)
+        {
+            writer.Write(0);
+            writer.Write(MatchMinFrames);
+            writer.Write(InputValidator);
         }
     }
 }

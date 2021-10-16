@@ -20,5 +20,13 @@ namespace NASB_Parser.StateActions
             Id = reader.ReadString();
             Trigger = new InputTrigger(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Frames);
+            writer.Write(Id);
+            writer.Write(Trigger);
+        }
     }
 }

@@ -20,5 +20,13 @@ namespace NASB_Parser.CheckThings
             Previous = reader.ReadBool();
             Extras = reader.ReadList(r => r.ReadString());
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(MovesetId);
+            writer.Write(Previous);
+            writer.Write(Extras);
+        }
     }
 }

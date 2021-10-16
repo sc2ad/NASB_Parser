@@ -18,5 +18,12 @@ namespace NASB_Parser.StateActions
             Index = reader.ReadInt();
             Id = reader.ReadString();
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Index);
+            writer.Write(Id);
+        }
     }
 }

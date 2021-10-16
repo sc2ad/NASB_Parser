@@ -24,6 +24,15 @@ namespace NASB_Parser.StateActions
             Timeline = reader.ReadString();
         }
 
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Manip);
+            writer.Write(Loop);
+            writer.Write(Source);
+            writer.Write(Timeline);
+        }
+
         public enum ManipType
         {
             Play,

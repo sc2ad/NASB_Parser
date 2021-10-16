@@ -16,5 +16,11 @@ namespace NASB_Parser.StateActions
         {
             MoveId = reader.ReadString();
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(MoveId);
+        }
     }
 }

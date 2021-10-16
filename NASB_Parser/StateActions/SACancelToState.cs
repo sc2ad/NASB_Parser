@@ -18,5 +18,12 @@ namespace NASB_Parser.StateActions
             ToState = reader.ReadString();
             Soft = reader.ReadBool();
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(ToState);
+            writer.Write(Soft);
+        }
     }
 }

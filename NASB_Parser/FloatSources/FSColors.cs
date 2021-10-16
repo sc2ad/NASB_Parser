@@ -18,5 +18,12 @@ namespace NASB_Parser.FloatSources
             ColorId = reader.ReadString();
             Permanent = reader.ReadBool();
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(ColorId);
+            writer.Write(Permanent);
+        }
     }
 }

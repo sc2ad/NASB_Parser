@@ -17,5 +17,11 @@ namespace NASB_Parser.Jumps
         {
             Height = FloatSource.Read(reader);
         }
+
+        public override void Write(BulkSerializeWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Height);
+        }
     }
 }
