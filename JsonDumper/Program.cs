@@ -96,13 +96,6 @@ namespace JsonDumper
 
         private static void Main(string[] args)
         {
-            Console.WriteLine("Enter path to exported TextAsset data...");
-            var p = @"D:\NASB_Managed\TextAsset";
-            while (!File.Exists(p) && !Directory.Exists(p))
-            {
-                Console.WriteLine("Enter a valid path!");
-                p = Console.ReadLine();
-            }
             var dst = "output";
             if (Directory.Exists(dst))
             {
@@ -117,6 +110,13 @@ namespace JsonDumper
             }
             else
             {
+                Console.WriteLine("Enter path to exported TextAsset data...");
+                var p = @"D:\NASB_Managed\TextAsset";
+                while (!File.Exists(p) && !Directory.Exists(p))
+                {
+                    Console.WriteLine("Enter a valid path!");
+                    p = Console.ReadLine();
+                }
                 Directory.CreateDirectory(dst);
                 if (Directory.Exists(p))
                 {
