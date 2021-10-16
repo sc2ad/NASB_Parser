@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace JsonDumper
 {
@@ -18,7 +19,8 @@ namespace JsonDumper
                     new JumpConverter(),
                     new ObjectSourceConverter(),
                     new StateActionConverter(),
-                    new Vector3Converter()
+                    new Vector3Converter(),
+                    new StringEnumConverter()
                 },
         };
 
