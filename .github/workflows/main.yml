@@ -31,6 +31,7 @@ jobs:
         with:
           name: NASB_Parser.dll
           path: NASB_Parser/bin/Release/netstandard2.1/NASB_Parser.dll
+          if-no-files-found: error
   release:
     runs-on: ubuntu-latest
     strategy:
@@ -50,5 +51,6 @@ jobs:
       - name: Upload built artifact
         uses: actions/upload-artifact@v2
         with:
-          name: NASB_Parser.dll
-          path: bin/Release/net5.0/${{ matrix.target }}/publish
+          name: JsonDumper-${{ matrix-target }}
+          path: JsonDumper/bin/Release/net5.0/${{ matrix.target }}/publish
+          if-no-files-found: error
