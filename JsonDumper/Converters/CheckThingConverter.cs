@@ -1,33 +1,43 @@
 ﻿using NASB_Parser.CheckThings;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using static NASB_Parser.CheckThings.CheckThing;
 
 namespace JsonDumper.Converters
 {
     public class CheckThingConverter : JsonConverter<CheckThing>
     {
-        public override CheckThing Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        private static readonly PropertyInfo tidInfo = typeof(CheckThing).GetProperty(nameof(CheckThing.TID));
+        private static readonly PropertyInfo versionInfo = typeof(CheckThing).GetProperty(nameof(CheckThing.Version));
+
+        public override CheckThing ReadJson(JsonReader reader, Type objectType, [AllowNull] CheckThing existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            return Converter.ReadJson<TypeId, CheckThing>(reader, serializer, tidInfo, versionInfo, res => res switch
+            {
+                TypeId.MultipleId => new CTMultiple(),
+                TypeId.CompareId => new CTCompareFloat(),
+                TypeId.DoubleTapId => new CTDoubleTapId(),
+                TypeId.InputId => new CTInput(),
+                TypeId.InputSeriesId => new CTInputSeries(),
+                TypeId.TechId => new CTCheckTech(),
+                TypeId.GrabId => new CTGrabId(),
+                TypeId.GrabAgentId => new CTGrabbedAgent(),
+                TypeId.SkinId => new CTSkin(),
+                TypeId.MoveId => new CTMove(),
+                TypeId.BaseIdentifier => new CheckThing(),
+                _ => throw new JsonException(),
+            });
         }
 
-        public override void Write(Utf8JsonWriter writer, CheckThing value, JsonSerializerOptions options)
+        public override void WriteJson(JsonWriter writer, [AllowNull] CheckThing value, JsonSerializer serializer)
         {
-            if (value.GetType() == typeof(CheckThing))
-            {
-                // Empty is empty, don't recurse forever.
-                writer.WriteStartObject();
-                writer.WriteEndObject();
-            }
-            else
-            {
-                JsonSerializer.Serialize<object>(writer, value, options);
-            }
+            Converter.WriteJson(writer, value, serializer, tidInfo, versionInfo);
         }
     }
 }

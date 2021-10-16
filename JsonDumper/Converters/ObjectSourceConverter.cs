@@ -1,33 +1,35 @@
 ﻿using NASB_Parser.ObjectSources;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using static NASB_Parser.ObjectSources.ObjectSource;
 
 namespace JsonDumper.Converters
 {
     public class ObjectSourceConverter : JsonConverter<ObjectSource>
     {
-        public override ObjectSource Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        private static readonly PropertyInfo tidInfo = typeof(ObjectSource).GetProperty(nameof(ObjectSource.TID));
+        private static readonly PropertyInfo versionInfo = typeof(ObjectSource).GetProperty(nameof(ObjectSource.Version));
+
+        public override ObjectSource ReadJson(JsonReader reader, Type objectType, [AllowNull] ObjectSource existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            return Converter.ReadJson<TypeId, ObjectSource>(reader, serializer, tidInfo, versionInfo, res => res switch
+            {
+                TypeId.FloatId => new OSFloat(),
+                TypeId.Vector2Id => new OSVector2(),
+                TypeId.BaseIdentifier => new ObjectSource(),
+                _ => throw new JsonException(),
+            });
         }
 
-        public override void Write(Utf8JsonWriter writer, ObjectSource value, JsonSerializerOptions options)
+        public override void WriteJson(JsonWriter writer, [AllowNull] ObjectSource value, JsonSerializer serializer)
         {
-            if (value.GetType() == typeof(ObjectSource))
-            {
-                // Empty is empty, don't recurse forever.
-                writer.WriteStartObject();
-                writer.WriteEndObject();
-            }
-            else
-            {
-                JsonSerializer.Serialize<object>(writer, value, options);
-            }
+            Converter.WriteJson(writer, value, serializer, tidInfo, versionInfo);
         }
     }
 }

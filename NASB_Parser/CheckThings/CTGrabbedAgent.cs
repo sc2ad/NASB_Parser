@@ -6,7 +6,7 @@ namespace NASB_Parser.CheckThings
 {
     public class CTGrabbedAgent : CheckThing
     {
-        public List<string> MatchTags { get; } = new List<string>();
+        public List<string> MatchTags { get; private set;  } = new List<string>();
 
         public CTGrabbedAgent()
         {

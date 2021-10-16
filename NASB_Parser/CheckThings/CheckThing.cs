@@ -6,8 +6,8 @@ namespace NASB_Parser.CheckThings
 {
     public class CheckThing : ISerializable
     {
-        public TypeId TID { get; }
-        public int Version { get; }
+        public TypeId TID { get; private set; }
+        public int Version { get; private set; }
 
         public CheckThing()
         {

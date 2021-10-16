@@ -1,5 +1,4 @@
-﻿using NASB_Parser.FloatStates;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,8 +6,8 @@ namespace NASB_Parser.FloatSources
 {
     public abstract class FloatSource : ISerializable
     {
-        public TypeId TID { get; }
-        public int Version { get; }
+        public TypeId TID { get; private set; }
+        public int Version { get; private set; }
 
         public FloatSource()
         {

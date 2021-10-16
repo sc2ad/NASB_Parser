@@ -7,7 +7,7 @@ namespace NASB_Parser.StateActions
 {
     public class SAMapAnimation : StateAction
     {
-        public List<MapPoint> Map { get; } = new List<MapPoint>();
+        public List<MapPoint> Map { get; private set; } = new List<MapPoint>();
 
         public SAMapAnimation()
         {

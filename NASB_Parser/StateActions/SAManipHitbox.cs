@@ -7,7 +7,7 @@ namespace NASB_Parser.StateActions
 {
     public class SAManipHitbox : StateAction
     {
-        public List<HBM> Manips { get; } = new List<HBM>();
+        public List<HBM> Manips { get; private set; } = new List<HBM>();
 
         public SAManipHitbox()
         {

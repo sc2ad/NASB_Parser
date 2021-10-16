@@ -8,7 +8,7 @@ namespace NASB_Parser.StateActions
     public class SAGUAMessageObject : ISerializable
     {
         public string PlainMessage { get; set; }
-        public List<MessageDynamic> Dynamics { get; } = new List<MessageDynamic>();
+        public List<MessageDynamic> Dynamics { get; private set; } = new List<MessageDynamic>();
 
         public SAGUAMessageObject()
         {

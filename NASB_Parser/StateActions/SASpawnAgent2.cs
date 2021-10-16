@@ -13,7 +13,7 @@ namespace NASB_Parser.StateActions
         public Vector3 LocalOffset { get; set; }
         public Vector3 WorldOffset { get; set; }
         public bool CustomSpawnMovement { get; set; }
-        public List<SpawnMovement> Movements { get; } = new List<SpawnMovement>();
+        public List<SpawnMovement> Movements { get; private set; } = new List<SpawnMovement>();
         public string SpawnedAgentDataId { get; set; }
         public FloatSource SpawnedAgentDataSetValue { get; set; }
         public FloatSource ResultOrderAdded { get; set; }
@@ -31,7 +31,7 @@ namespace NASB_Parser.StateActions
         public FloatSource RedirectX { get; set; }
         public FloatSource RedirectY { get; set; }
         public bool ExactSpawn { get; set; }
-        public List<AddedSpawnData> AddedSpawns { get; } = new List<AddedSpawnData>();
+        public List<AddedSpawnData> AddedSpawns { get; private set; } = new List<AddedSpawnData>();
 
         public SASpawnAgent2()
         {

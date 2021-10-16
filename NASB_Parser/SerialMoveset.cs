@@ -6,7 +6,11 @@ namespace NASB_Parser
 {
     public class SerialMoveset : ISerializable
     {
-        public List<IdState> States { get; } = new List<IdState>();
+        public List<IdState> States { get; private set; } = new List<IdState>();
+
+        public SerialMoveset()
+        {
+        }
 
         public SerialMoveset(BulkSerializeReader reader)
         {

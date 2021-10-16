@@ -10,7 +10,9 @@ namespace NASB_Parser
         public float AtFrame { get; set; }
         public StateAction Action { get; set; }
 
-        public TimedAction(BulkSerializeReader reader)
+        public TimedAction() { }
+
+        internal TimedAction(BulkSerializeReader reader)
         {
             _ = reader.ReadInt();
             AtFrame = reader.ReadFloat();

@@ -7,7 +7,8 @@ namespace NASB_Parser
     public class AgentState : ISerializable
     {
         public string CustomCall { get; set; }
-        public List<TimedAction> Timeline { get; } = new List<TimedAction>();
+        // Needed for system.text.json
+        public List<TimedAction> Timeline { get; private set; } = new List<TimedAction>();
 
         public AgentState()
         {

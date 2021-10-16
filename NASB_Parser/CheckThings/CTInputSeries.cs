@@ -7,8 +7,8 @@ namespace NASB_Parser.CheckThings
     public class CTInputSeries : CheckThing
     {
         public int CheckFrames { get; set; }
-        public List<LookForInput> InputSeries { get; } = new List<LookForInput>();
-        public List<LookForInput> StopLooking { get; } = new List<LookForInput>();
+        public List<LookForInput> InputSeries { get; private set; } = new List<LookForInput>();
+        public List<LookForInput> StopLooking { get; private set; } = new List<LookForInput>();
 
         public CTInputSeries()
         {

@@ -3,8 +3,7 @@ using NASB_Parser;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace JsonDumper
 {
@@ -25,17 +24,17 @@ namespace JsonDumper
             watch.Stop();
             Console.WriteLine($"Creation of type structure took: {watch.Elapsed}");
             watch.Reset();
-            JsonSerializerOptions options = new()
+            var serialization = new JsonSerializer()
             {
-                Converters = {
-                    new JsonStringEnumConverter(),
+                Converters =
+                {
                     new CheckThingConverter(),
                     new FloatSourceConverter(),
                     new JumpConverter(),
                     new ObjectSourceConverter(),
                     new StateActionConverter(),
                     new Vector3Converter()
-                }
+                },
             };
             Console.WriteLine("Json dump...");
             var outpFile = Path.GetFileNameWithoutExtension(fullPath);
@@ -44,9 +43,42 @@ namespace JsonDumper
             if (File.Exists(outpFile))
                 File.Delete(outpFile);
             using var fs = File.OpenWrite(outpFile);
-            using var writer = new Utf8JsonWriter(fs);
-            JsonSerializer.Serialize(writer, data, options);
+            using var writer = new StreamWriter(fs);
+            serialization.Serialize(writer, data);
             watch.Stop();
+            Console.WriteLine($"Creation of JSON took: {watch.Elapsed}");
+        }
+
+        private static void Read(string path)
+        {
+            var serialization = new JsonSerializer()
+            {
+                Converters =
+                {
+                    new CheckThingConverter(),
+                    new FloatSourceConverter(),
+                    new JumpConverter(),
+                    new ObjectSourceConverter(),
+                    new StateActionConverter(),
+                    new Vector3Converter()
+                },
+            };
+            var watch = new Stopwatch();
+            watch.Start();
+            var data = new JsonTextReader(File.OpenText(path));
+            var dataToWrite = serialization.Deserialize<SerialMoveset>(data);
+            watch.Stop();
+            Console.WriteLine($"Deserialization took: {watch.Elapsed}");
+            var outpFile = Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path)) + "_2.json";
+            if (File.Exists(outpFile))
+                File.Delete(outpFile);
+            watch.Reset();
+            watch.Start();
+            using var fs = File.OpenWrite(outpFile);
+            using var writer = new StreamWriter(fs);
+            serialization.Serialize(writer, dataToWrite);
+            watch.Stop();
+
             Console.WriteLine($"Creation of JSON took: {watch.Elapsed}");
         }
 
@@ -77,6 +109,14 @@ namespace JsonDumper
             {
                 Write(dst, p);
                 Console.WriteLine("Success!");
+            }
+            if (Directory.Exists(dst))
+            {
+                foreach (var path in Directory.EnumerateFiles(dst))
+                {
+                    Read(path);
+                }
+                Console.WriteLine("Success Reading!");
             }
         }
     }
