@@ -31,3 +31,24 @@ jobs:
         with:
           name: NASB_Parser.dll
           path: NASB_Parser/bin/Release/netstandard2.1/NASB_Parser.dll
+  release:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['5.0.x']
+        target: ['win-x64', 'ubuntu-x64']
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Build for JSON parse
+        run: |
+          cd JsonDumper
+          dotnet publish -r ${{ matrix.target }} -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -c Release
+      - name: Upload built artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: NASB_Parser.dll
+          path: bin/Release/net5.0/${{ matrix.target }}/publish
