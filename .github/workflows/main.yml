@@ -51,6 +51,6 @@ jobs:
       - name: Upload built artifact
         uses: actions/upload-artifact@v2
         with:
-          name: JsonDumper-${{ matrix-target }}
+          name: JsonDumper-${{ matrix.target }}
           path: JsonDumper/bin/Release/net5.0/${{ matrix.target }}/publish
           if-no-files-found: error
