@@ -45,7 +45,9 @@ namespace NASB_Parser.Jumps
             HeightId,
             HoldId,
             AirdashId,
-            KnockbackId
+            KnockbackId,
+            DelayedId,
+            KnockbackAltId
         }
     }
 }
