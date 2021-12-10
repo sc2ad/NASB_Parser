@@ -47,7 +47,7 @@ namespace NASB_Parser.StateActions
             writer.Write(Type);
             writer.Write(Armor);
             writer.Write(KnockbackArmor);
-            writer.Write(ForceZ0);
+            writer.Write(0);
             writer.Write(BoneA);
             writer.Write(BoneB);
             writer.Write(Radius);
