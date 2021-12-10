@@ -26,8 +26,8 @@ namespace NASB_Parser.StateActions
         public override void Write(BulkSerializeWriter writer)
         {
             base.Write(writer);
-            writer.AddString(AnimId);
-            writer.AddInt(RootAnim ? 7 : 0);
+            writer.Write(AnimId);
+            writer.Write(RootAnim);
             writer.Write(Map);
         }
 
