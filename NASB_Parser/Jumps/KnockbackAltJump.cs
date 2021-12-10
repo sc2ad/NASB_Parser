@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NASB_Parser.Jumps
 {
-    class KnockbackAltJump : Jump
+    public class KnockbackAltJump : Jump
     {
         public FloatSource XDir { get; set; }
         public FloatSource YDir { get; set; }

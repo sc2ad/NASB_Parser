@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NASB_Parser.StateActions
 {
-    class SAMapAnimationSimple : StateAction
+	public class SAMapAnimationSimple : StateAction
     {
 		public string AnimId { get; set; }
 		public bool RootAnim { get; set; }

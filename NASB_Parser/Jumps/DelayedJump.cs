@@ -2,14 +2,14 @@
 
 namespace NASB_Parser.Jumps
 {
-    class DelayedJump : Jump
+	public class DelayedJump : Jump
     {
 		public FloatSource Height { get; set; }
 		public FloatSource AutoHoldFrames { get; set; }
 		public FloatSource YVelMaxOnRelease { get; set; }
 
 		public DelayedJump()
-        {
+		{
 		}
 
 		internal DelayedJump(BulkSerializeReader reader) : base(reader)
