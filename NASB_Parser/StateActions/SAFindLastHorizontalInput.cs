@@ -32,7 +32,8 @@ namespace NASB_Parser.StateActions
             NormalButtonDown,
             StrongButtonDown,
             SpecialButtonDown,
-            AnyCombatButtonDown
+            AnyCombatButtonDown,
+            None2nd
         }
     }
 }

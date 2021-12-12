@@ -52,7 +52,7 @@ namespace NASB_Parser.StateActions
             writer.Write(TID);
             writer.Write(1);
             writer.Write(Hitbox);
-            writer.Write(ForceZ0);
+            writer.Write(0);
             writer.Write(Radius);
             writer.Write(LocalOffset);
             writer.Write(WorldOffset);

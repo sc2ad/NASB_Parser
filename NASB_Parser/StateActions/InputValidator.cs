@@ -86,7 +86,14 @@ namespace NASB_Parser.StateActions
             Fun,
             GrabMacro,
             Taunt = 16,
-            CPU = 15
+            CPU = 15,
+            CtrlMag2nd = 17,
+            CtrlX2nd = 18,
+            CtrlY2nd = 19,
+            CtrlSegment2nd = 20,
+            CtrlMoveX2nd = 21,
+            CtrlMoveY2nd = 22,
+            Tilting2nd = 23
         }
 
         public enum CtrlSeg
