@@ -106,6 +106,8 @@ namespace NASB_Parser.StateActions
                 TypeId.ForceExtraInputId => new SAForceExtraInputCheck(reader),
                 TypeId.LaunchGrabbedCustomId => new SALaunchGrabbedCustom(reader),
                 TypeId.BaseIdentifier => new StateAction(reader),
+                TypeId.MapAnimSimpleId => new SAMapAnimationSimple(reader),
+                TypeId.PersistLocalFXId => new SAPersistLocalFX(reader),
                 _ => throw new ReadException(reader, $"Could not parse valid {nameof(StateAction)} type from: {reader.PeekInt()}!"),
             };
         }
@@ -186,7 +188,9 @@ namespace NASB_Parser.StateActions
             UpdateHitboxesId,
             SampleAnimId,
             ForceExtraInputId,
-            LaunchGrabbedCustomId
+            LaunchGrabbedCustomId,
+            MapAnimSimpleId,
+            PersistLocalFXId
         }
     }
 }
