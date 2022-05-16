@@ -11,9 +11,8 @@ namespace NASB_Parser.Jumps
         public FloatSource YDir { get; set; }
         public FloatSource LaunchDist { get; set; }
         public FloatSource Frames { get; set; }
-        public FloatSource DiType { get; set; }
-        public FloatSource DiAngleIn { get; set; }
-        public FloatSource DiAngleOut { get; set; }
+        public bool DoLaunch { get; set; }
+        public FloatSource BounceMinVel { get; set; }
 
         public KnockbackJump()
         {
@@ -25,9 +24,22 @@ namespace NASB_Parser.Jumps
             YDir = FloatSource.Read(reader);
             LaunchDist = FloatSource.Read(reader);
             Frames = FloatSource.Read(reader);
-            DiType = FloatSource.Read(reader);
-            DiAngleIn = FloatSource.Read(reader);
-            DiAngleOut = FloatSource.Read(reader);
+
+            if (Version <= 2)
+            {
+                // Read in the old DiType, DiAngleIn, and DiAngleOut, but ignore them
+                FloatSource.Read(reader);
+                FloatSource.Read(reader);
+                FloatSource.Read(reader);
+            }
+            
+            if (Version == 0) return;
+
+            DoLaunch = reader.ReadBool();
+
+            if (Version == 1) return;
+
+            BounceMinVel = FloatSource.Read(reader);
         }
 
         public override void Write(BulkSerializeWriter writer)
@@ -37,9 +49,8 @@ namespace NASB_Parser.Jumps
             writer.Write(YDir);
             writer.Write(LaunchDist);
             writer.Write(Frames);
-            writer.Write(DiType);
-            writer.Write(DiAngleIn);
-            writer.Write(DiAngleOut);
+            writer.Write(DoLaunch);
+            writer.Write(BounceMinVel);
         }
     }
 }
