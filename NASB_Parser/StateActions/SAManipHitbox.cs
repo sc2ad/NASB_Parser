@@ -1,4 +1,4 @@
-﻿using NASB_Parser.FloatSources;
+using NASB_Parser.FloatSources;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -39,7 +39,9 @@ namespace NASB_Parser.StateActions
             WorldOffsetZ2nd,
             LocalOffsetX2nd,
             LocalOffsetY2nd,
-            LocalOffsetZ2nd
+            LocalOffsetZ2nd,
+            Bone,
+            Bone2
         }
 
         public class HBM : ISerializable
@@ -47,25 +49,45 @@ namespace NASB_Parser.StateActions
             public Manip Manip { get; set; }
             public int Hitbox { get; set; }
             public FloatSource Source { get; set; }
+            public string Bone { get; set; }
+            public string Bone2 { get; set; }
+            public int Version { get; private set; }
 
             public HBM()
-            {
-            }
+            { }
 
             internal HBM(BulkSerializeReader reader)
             {
-                _ = reader.ReadInt();
+                Version = reader.ReadInt();
                 Manip = (Manip)reader.ReadInt();
                 Hitbox = reader.ReadInt();
                 Source = FloatSource.Read(reader);
+
+                if (Version > 0 && (Manip == Manip.Bone || Manip == Manip.Bone2))
+                {
+                    Bone = reader.ReadString();
+                    if (Manip == Manip.Bone2)
+                    {
+                        Bone2 = reader.ReadString();
+                    }
+                }
             }
 
             public void Write(BulkSerializeWriter writer)
             {
-                writer.Write(0);
+                writer.Write(Version);
                 writer.Write(Manip);
                 writer.Write(Hitbox);
                 writer.Write(Source);
+
+                if (Manip == Manip.Bone || Manip == Manip.Bone2)
+                {
+                    writer.AddString(Bone);
+                    if (Manip == Manip.Bone2)
+                    {
+                        writer.AddString(Bone2);
+                    }
+                }
             }
         }
     }
