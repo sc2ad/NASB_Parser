@@ -8,6 +8,7 @@ namespace NASB_Parser.CheckThings
     {
         public string MovesetId { get; set; }
         public bool Previous { get; set; }
+        public bool Not { get; set; }
         public List<string> Extras { get; private set; } = new List<string>();
 
         public CTMove()
@@ -18,6 +19,7 @@ namespace NASB_Parser.CheckThings
         {
             MovesetId = reader.ReadString();
             Previous = reader.ReadBool();
+            Not = reader.ReadBool();
             Extras = reader.ReadList(r => r.ReadString());
         }
 
@@ -26,6 +28,7 @@ namespace NASB_Parser.CheckThings
             base.Write(writer);
             writer.Write(MovesetId);
             writer.Write(Previous);
+            writer.Write(Not);
             writer.Write(Extras);
         }
     }
