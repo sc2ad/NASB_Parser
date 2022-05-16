@@ -54,7 +54,27 @@ namespace NASB_Parser.FloatSources
             LastHitType = 21,
             LastHitDirection,
             LastHitForceJabReset = 27,
-            LastHitForward = 23
+            LastHitForward = 23,
+            ChainCount = 30,
+            ComboCount = 31,
+            AltLaunch = 32,
+            DirectionX = 33,
+            DirectionY = 34,
+            DistanceTotal = 35,
+            DistanceX = 36,
+            DistanceY = 37,
+            TravelTotal = 38,
+            TravelX = 39,
+            TravelY = 40,
+            TravelAbsoluteTotal = 41,
+            TravelAbsoluteX = 42,
+            TravelAbsoluteY = 43,
+            LaunchRate = 44,
+            LaunchVelocityX = 45,
+            LaunchVelocityY = 46,
+            LaunchVelocityTrueX = 47,
+            LaunchVelocityTrueY = 48,
+            TravelAngle = 49
         }
     }
 }
