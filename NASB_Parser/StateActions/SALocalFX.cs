@@ -31,7 +31,9 @@ namespace NASB_Parser.StateActions
             TurnOn,
             TurnOff,
             Restart,
-            RestartAll
+            RestartAll,
+            RestartAndOn,
+            RestartAndOff
         }
     }
 }
