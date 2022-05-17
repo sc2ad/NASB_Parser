@@ -15,7 +15,10 @@ namespace NASB_Parser.StateActions
 
         internal SAStateCancelGrabbed(BulkSerializeReader reader) : base(reader)
         {
-            Proxy = reader.ReadBool();
+            if (Version > 0)
+            {
+                Proxy = reader.ReadBool();
+            }
             ToState = reader.ReadString();
         }
 
