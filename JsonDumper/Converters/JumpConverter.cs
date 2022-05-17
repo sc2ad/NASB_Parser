@@ -24,6 +24,8 @@ namespace JsonDumper.Converters
                 TypeId.HoldId => new HoldJump(),
                 TypeId.AirdashId => new AirDashJump(),
                 TypeId.KnockbackId => new KnockbackJump(),
+                TypeId.DelayedId => new DelayedJump(),
+                TypeId.ClampMomentumId => new ClampMomentumJump(),
                 TypeId.BaseIdentifier => new Jump(),
                 // This is more aggressive than the game parser for better error detection.
                 _ => throw new JsonException(),
