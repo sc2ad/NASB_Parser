@@ -19,7 +19,8 @@ namespace NASB_Parser.CheckThings
         {
             MovesetId = reader.ReadString();
             Previous = reader.ReadBool();
-            Not = reader.ReadBool();
+            if (Version > 0)
+                Not = reader.ReadBool();
             Extras = reader.ReadList(r => r.ReadString());
         }
 
