@@ -41,7 +41,9 @@ namespace NASB_Parser.StateActions
             WorldOffsetZ2nd,
             LocalOffsetX2nd,
             LocalOffsetY2nd,
-            LocalOffsetZ2nd
+            LocalOffsetZ2nd,
+            Bone,
+            Bone2
         }
 
         public class HBM : ISerializable
@@ -50,27 +52,47 @@ namespace NASB_Parser.StateActions
             public int Hurtbox { get; set; }
             public HurtType Type { get; set; }
             public FloatSource Source { get; set; }
+            public string Bone { get; set; }
+            public string Bone2 { get; set; }
+            public int Version { get; private set; }
 
             public HBM()
-            {
-            }
+            { }
 
             internal HBM(BulkSerializeReader reader)
             {
-                _ = reader.ReadInt();
+                Version = reader.ReadInt();
                 Manip = (Manip)reader.ReadInt();
                 Hurtbox = reader.ReadInt();
                 Type = (HurtType)reader.ReadInt();
                 Source = FloatSource.Read(reader);
+
+                if (Version > 0 && (Manip == Manip.Bone || Manip == Manip.Bone2))
+                {
+                    Bone = reader.ReadString();
+                    if (Manip == Manip.Bone2)
+                    {
+                        Bone2 = reader.ReadString();
+                    }
+                }
             }
 
             public void Write(BulkSerializeWriter writer)
             {
-                writer.Write(0);
+                writer.Write(Version);
                 writer.Write(Manip);
                 writer.Write(Hurtbox);
                 writer.Write(Type);
                 writer.Write(Source);
+
+                if (Manip == Manip.Bone || Manip == Manip.Bone2)
+                {
+                    writer.AddString(Bone);
+                    if (Manip == Manip.Bone2)
+                    {
+                        writer.AddString(Bone2);
+                    }
+                }
             }
         }
     }

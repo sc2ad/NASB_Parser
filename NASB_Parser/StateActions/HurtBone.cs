@@ -9,7 +9,7 @@ namespace NASB_Parser.StateActions
         public HurtType Type { get; set; }
         public int Armor { get; set; }
         public int KnockbackArmor { get; set; }
-        public bool ForceZ0 { get; set; }
+        public bool IgnoreGrab { get; set; }
         public string BoneA { get; set; }
         public string BoneB { get; set; }
         public float Radius { get; set; }
@@ -31,7 +31,7 @@ namespace NASB_Parser.StateActions
             {
                 KnockbackArmor = reader.ReadInt();
             }
-            ForceZ0 = reader.ReadBool();
+            IgnoreGrab = reader.ReadBool();
             BoneA = reader.ReadString();
             BoneB = reader.ReadString();
             Radius = reader.ReadFloat();
@@ -47,7 +47,7 @@ namespace NASB_Parser.StateActions
             writer.Write(Type);
             writer.Write(Armor);
             writer.Write(KnockbackArmor);
-            writer.Write(0);
+            writer.Write(IgnoreGrab);
             writer.Write(BoneA);
             writer.Write(BoneB);
             writer.Write(Radius);

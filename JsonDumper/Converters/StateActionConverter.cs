@@ -94,6 +94,9 @@ namespace JsonDumper.Converters
                     TypeId.SampleAnimId => new SASampleAnim(),
                     TypeId.ForceExtraInputId => new SAForceExtraInputCheck(),
                     TypeId.LaunchGrabbedCustomId => new SALaunchGrabbedCustom(),
+                    TypeId.MapAnimSimpleId => new SAMapAnimationSimple(),
+                    TypeId.PersistLocalFXId => new SAPersistLocalFX(),
+                    TypeId.OnLeaveParentId => new SAOnLeaveParent(),
                     TypeId.BaseIdentifier => new StateAction(),
                     _ => throw new JsonException(),
                 });
