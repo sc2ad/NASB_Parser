@@ -24,6 +24,8 @@ namespace NASB_Parser.StateActions
 		{
 			base.Write(writer);
 			writer.AddString(Id);
+			if (Persist == null)
+				Persist = new FSValue(-1f);
 			writer.Write(Persist);
 			writer.Write(MaxOut);
 		}
