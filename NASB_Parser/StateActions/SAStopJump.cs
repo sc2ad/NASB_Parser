@@ -8,7 +8,7 @@ namespace NASB_Parser.StateActions
     {
         public bool StopAll { get; set; }
         public string JumpId { get; set; }
-        public string[] JumpIds { get; set; }
+        public List<string> JumpIds { get; private set; } = new List<string>();
 
         public SAStopJump()
         { }
@@ -20,14 +20,7 @@ namespace NASB_Parser.StateActions
             
             if (Version > 0)
             {
-                int numJumpIds = reader.ReadInt();
-                for (int i = 0; i < numJumpIds; i++)
-                {
-                    JumpIds[i] = reader.ReadString();
-                }
-            } else
-            {
-                JumpIds = new string[0];
+                JumpIds = reader.ReadList(r => r.ReadString());
             }
         }
 
@@ -36,11 +29,7 @@ namespace NASB_Parser.StateActions
             base.Write(writer);
             writer.Write(StopAll);
             writer.Write(JumpId);
-            writer.Write(JumpId.Length);
-            for (int i = 0; i < JumpIds.Length; i++)
-            {
-                writer.Write(JumpIds[i]);
-            }
+            writer.Write(JumpIds);
         }
     }
 }
